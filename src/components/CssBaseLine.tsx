@@ -15,9 +15,9 @@ const CssBaseLine = () => {
                     -o-user-select: none;
                     -ms-user-select: none;
                     user-select: none;
-                    max-width: 1500px;
+                    /* max-width: 1500px; */
                     margin: auto;
-                    height: 100%;
+                    /* height: 100%; */
                     -webkit-tap-highlight-color: transparent;
                     font-family: Verdana;
                 }

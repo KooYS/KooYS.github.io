@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import { seoYear } from '@/libs/seo';
 import theme from 'styles/theme';
+import Layout from '@/components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -31,8 +32,10 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
             </Head>
             <ThemeProvider theme={theme}>
-                <CssBaseLine />
-                <Component {...pageProps} />
+                <Layout>
+                    <CssBaseLine />
+                    <Component {...pageProps} />
+                </Layout>
             </ThemeProvider>
         </>
     );
