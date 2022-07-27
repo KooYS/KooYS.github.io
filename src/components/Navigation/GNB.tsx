@@ -28,17 +28,45 @@ const Wrap = styled.div`
 
 const BreadcrumbsWrap = styled.div`
     display: flex;
-    gap: 20px;
+    gap: 10px;
+
+    & a {
+        padding: 5px 10px;
+    }
+
+    & a:hover {
+        background: #e6e6e6;
+        border-radius: 5px;
+    }
 `;
-const LogoWrap = styled.div`
+const LogoWrap = styled.a`
     display: flex;
-    gap: 20px;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 10px;
+
+    & :hover {
+        background: #e6e6e6;
+        border-radius: 5px;
+    }
+
+    & img {
+        width: 32px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
 `;
 const GNB = () => {
     return (
         <Header>
             <Wrap>
-                <LogoWrap></LogoWrap>
+                <LogoWrap>
+                    <img
+                        src="https://avatars.githubusercontent.com/u/17160263?v=4"
+                        alt="avatar"
+                    />
+                    KooYS
+                </LogoWrap>
                 <BreadcrumbsWrap>
                     <a href="/about">About</a>
                     <a href="/contact">Contact</a>

@@ -30,6 +30,7 @@ const CssBaseLine = () => {
                     text-decoration: none;
                     outline: none;
                     color: inherit;
+                    cursor: pointer;
                     &:active,
                     &:hover {
                         text-decoration: none;
