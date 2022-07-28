@@ -8,7 +8,7 @@ const useDevice = () => {
     const [isPc, setIsPc] = useState(false);
     const [device, setDevice] = useState<Device>('pc');
 
-    const mobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const mobile = useMediaQuery({ query: '(max-width: 566px)' });
     const tablet = useMediaQuery({
         query: '(min-width: 768px) and (max-width:1200px)',
     });

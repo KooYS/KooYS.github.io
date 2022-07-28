@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import DarkModeButton from './DarkModeButton';
 
 const BreadcrumbsWrap = styled.div`
     display: flex;
@@ -14,11 +15,19 @@ const BreadcrumbsWrap = styled.div`
         border-radius: 5px;
     }
 `;
+
+const StyledDarkModeButton = styled(DarkModeButton)`
+    &:hover {
+        background: #e6e6e6;
+        border-radius: 5px;
+    }
+`;
 const Breadcrumb = () => {
     return (
         <BreadcrumbsWrap>
             <a href="/about">About</a>
             <a href="/contact">Contact</a>
+            <StyledDarkModeButton size="15px" />
         </BreadcrumbsWrap>
     );
 };

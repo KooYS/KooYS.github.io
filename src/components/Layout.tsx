@@ -11,6 +11,7 @@ interface Props {
 const ContentWrap = styled.main`
     padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
+    padding-bottom: calc(max(5vh, 32px));
     position: relative;
     margin: 0 auto;
     display: flex;
