@@ -1,6 +1,6 @@
 import useDarkMode from '@/hooks/useDarkMode';
 import styled from '@emotion/styled';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
@@ -12,35 +12,43 @@ const StyledButton = styled.a<Props>`
     align-items: center;
 `;
 
+const StyledBsMoonFill = styled(BsMoonFill)`
+    & {
+        display: none;
+    }
+
+    .light & {
+        display: none;
+    }
+
+    .dark & {
+        display: block;
+    }
+`;
+
+const StyledBsSunFill = styled(BsSunFill)`
+    & {
+        display: none;
+    }
+
+    .dark & {
+        display: none;
+    }
+
+    .light & {
+        display: block;
+    }
+`;
+
 const DarkModeButton: React.FC<Props> = ({ size }) => {
-    const { isDarkMode, toggle } = useDarkMode();
-
-    const [isDark, setIsDark] = useState(false);
-
-    const isCheck = () => {
-        if (document.body.classList.contains('dark')) {
-            setIsDark(true);
-        } else if (document.body.classList.contains('light')) {
-            setIsDark(false);
-        }
-    };
-
-    // const [loaded, setLoaded] = useState(false);
-    useEffect(() => {
-        isCheck();
-        console.log(isDarkMode);
-    }, [isDarkMode]);
+    const { toggle } = useDarkMode();
 
     return (
         <>
             {
-                <StyledButton
-                    size={size}
-                    onClick={() => {
-                        toggle();
-                        isCheck();
-                    }}>
-                    {isDark ? <BsMoonFill /> : <BsSunFill />}
+                <StyledButton size={size} onClick={toggle}>
+                    <StyledBsMoonFill />
+                    <StyledBsSunFill />
                 </StyledButton>
             }
         </>
