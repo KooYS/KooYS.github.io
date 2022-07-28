@@ -6,6 +6,7 @@ import { DefaultSeo } from 'next-seo';
 import { seoYear } from '@/libs/seo';
 import theme from 'styles/theme';
 import Layout from '@/components/Layout';
+import 'styles/markdown.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

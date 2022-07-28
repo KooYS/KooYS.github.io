@@ -6,5 +6,6 @@ declare module '@emotion/react' {
             tablet: string;
             mobile: string;
         };
+        colorScheme: string;
     }
 }

@@ -1,3 +1,4 @@
+import useDarkMode from '@/hooks/useDarkMode';
 import styled from '@emotion/styled';
 import React from 'react';
 import { BsGithub } from 'react-icons/bs';
@@ -21,9 +22,11 @@ const Social = styled.div`
     font-size: 30px;
 `;
 const Footer = () => {
+    const { toggle } = useDarkMode();
+
     return (
         <StyledFooter>
-            <Copyright>Copyright 2022 KooYS</Copyright>
+            <Copyright onClick={toggle}>Copyright 2022 KooYS</Copyright>
             <Social>
                 <BsGithub />
             </Social>
