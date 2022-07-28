@@ -11,16 +11,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <DefaultSeo
-                titleTemplate={`${seoYear()} Duckzill | %s`}
+                titleTemplate={`${seoYear()} KooYS Blog | %s`}
                 openGraph={{
-                    title: 'Duckzill',
-                    description: 'Duckzill Auth',
+                    title: 'KooYS Blog',
+                    description: 'Development Blog',
                     images: [
                         {
-                            url: 'duckzill.jpg',
+                            url: 'og.png',
                             width: 1200,
                             height: 630,
-                            alt: 'duckzill',
+                            alt: 'KooYS',
                         },
                     ],
                 }}

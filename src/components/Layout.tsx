@@ -9,7 +9,6 @@ interface Props {
 }
 
 const ContentWrap = styled.main`
-    width: 720px;
     padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
     position: relative;
@@ -19,7 +18,7 @@ const ContentWrap = styled.main`
     flex-grow: 1;
     flex-shrink: 0;
     align-items: flex-start;
-    max-width: 100%;
+    max-width: 720px;
 `;
 const Layout: React.FC<Props> = ({ children }) => {
     return (
