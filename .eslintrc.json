@@ -3,9 +3,18 @@
         "next/core-web-vitals",
         "eslint:recommended",
         "plugin:prettier/recommended",
-        "plugin:markdown/recommended"
+        "plugin:markdown/recommended",
+        "plugin:mdx/recommended"
     ],
     "rules": {
         "@next/next/no-img-element": "off"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["**/*.mdx"],
+            "rules": {
+                "react/jsx-no-undef": "off"
+            }
+        }
+    ]
 }

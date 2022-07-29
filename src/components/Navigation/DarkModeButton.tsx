@@ -16,11 +16,9 @@ const StyledBsMoonFill = styled(BsMoonFill)`
     & {
         display: none;
     }
-
     .light & {
         display: none;
     }
-
     .dark & {
         display: block;
     }
@@ -30,11 +28,9 @@ const StyledBsSunFill = styled(BsSunFill)`
     & {
         display: none;
     }
-
     .dark & {
         display: none;
     }
-
     .light & {
         display: block;
     }

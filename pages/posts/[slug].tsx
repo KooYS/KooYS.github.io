@@ -1,12 +1,22 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import markdownToHtml from '@/libs/markdownToHtml';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
 import { getAllPosts, getPostBySlug } from '@/libs/post';
+import rehypeHighlight from 'rehype-highlight';
+
+const components = {
+    Box: (props: any) => <p {...props} />,
+    //코드 스타일링
+    // code: CodeBlock,
+};
+
 export default function Post({ post }: any) {
     const router = useRouter();
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404} />;
     }
+
     return (
         <div>
             {router.isFallback ? (
@@ -14,9 +24,7 @@ export default function Post({ post }: any) {
             ) : (
                 <>
                     <article className="markdown-body">
-                        <div
-                            dangerouslySetInnerHTML={{ __html: post.content }}
-                        />
+                        <MDXRemote {...post.content} components={components} />
                     </article>
                 </>
             )}
@@ -34,7 +42,9 @@ export async function getStaticProps({ params }: any) {
         'ogImage',
         'coverImage',
     ]);
-    const content = await markdownToHtml(post.content || '');
+    const content = await serialize(post.content || '', {
+        mdxOptions: { rehypePlugins: [rehypeHighlight] },
+    });
 
     return {
         props: {

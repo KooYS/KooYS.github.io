@@ -3,7 +3,6 @@ import React from 'react';
 import Breadcrumb from './Breadcrumb';
 
 const Header = styled.header`
-    position: fixed;
     top: 0;
     left: 0;
     height: 54px;
