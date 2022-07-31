@@ -3,5 +3,5 @@
 
 
 
-yarn export
 npx lint-staged
+yarn export
