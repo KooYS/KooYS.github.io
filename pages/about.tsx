@@ -604,9 +604,18 @@ const About = () => {
                                                 개발
                                             </li>
                                             <li className="example_img">
-                                                <img src="./images/about/couponvill/1.png" />
-                                                <img src="./images/about/couponvill/2.png" />
-                                                <img src="./images/about/couponvill/3.png" />
+                                                <img
+                                                    src="./images/about/couponvill/1.png"
+                                                    alt="couponvill"
+                                                />
+                                                <img
+                                                    src="./images/about/couponvill/2.png"
+                                                    alt="couponvill"
+                                                />
+                                                <img
+                                                    src="./images/about/couponvill/3.png"
+                                                    alt="couponvill"
+                                                />
                                             </li>
                                         </ul>
                                     </div>
@@ -662,10 +671,22 @@ const About = () => {
                                                 </ul>
                                             </li>
                                             <li className="example_img">
-                                                <img src="./images/about/duckzill/1.png" />
-                                                <img src="./images/about/duckzill/2.png" />
-                                                <img src="./images/about/duckzill/3.png" />
-                                                <img src="./images/about/duckzill/4.png" />
+                                                <img
+                                                    src="./images/about/duckzill/1.png"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill/2.png"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill/3.png"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill/4.png"
+                                                    alt="duckzill"
+                                                />
                                             </li>
                                         </ul>
                                     </div>
@@ -716,10 +737,22 @@ const About = () => {
                                                 외부 데이터 핸들링 백오피스 개발
                                             </li>
                                             <li className="example_img">
-                                                <img src="./images/about/duckzill_shop/1.jpg" />
-                                                <img src="./images/about/duckzill_shop/2.jpg" />
-                                                <img src="./images/about/duckzill_shop/3.jpg" />
-                                                <img src="./images/about/duckzill_shop/4.jpg" />
+                                                <img
+                                                    src="./images/about/duckzill_shop/1.jpg"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill_shop/2.jpg"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill_shop/3.jpg"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill_shop/4.jpg"
+                                                    alt="duckzill"
+                                                />
                                             </li>
                                         </ul>
                                     </div>
@@ -869,9 +902,18 @@ const About = () => {
                                                 </ul>
                                             </li>
                                             <li className="example_img">
-                                                <img src="./images/about/duckzill_shop2/1.png" />
-                                                <img src="./images/about/duckzill_shop2/2.png" />
-                                                <img src="./images/about/duckzill_shop2/3.png" />
+                                                <img
+                                                    src="./images/about/duckzill_shop2/1.png"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill_shop2/2.png"
+                                                    alt="duckzill"
+                                                />
+                                                <img
+                                                    src="./images/about/duckzill_shop2/3.png"
+                                                    alt="duckzill"
+                                                />
                                             </li>
                                         </ul>
                                     </div>
