@@ -47,7 +47,7 @@ const GNB = () => {
     return (
         <Header>
             <Wrap>
-                <LogoWrap>
+                <LogoWrap href="/">
                     <img
                         src="https://avatars.githubusercontent.com/u/17160263?v=4"
                         alt="avatar"
