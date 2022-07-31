@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
     push:
         branches:
-            - page
+            - master
 
 jobs:
     deploy:
@@ -26,6 +26,6 @@ jobs:
               uses: JamesIves/github-pages-deploy-action@3.7.1
               with:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  BRANCH: master
+                  BRANCH: page
                   FOLDER: out
                   CLEAN: true
