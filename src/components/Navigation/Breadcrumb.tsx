@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import DarkModeButton from './DarkModeButton';
-
+import Link from 'next/link';
 const BreadcrumbsWrap = styled.div`
     display: flex;
     gap: 10px;
@@ -25,8 +25,12 @@ const StyledDarkModeButton = styled(DarkModeButton)`
 const Breadcrumb = () => {
     return (
         <BreadcrumbsWrap>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
+            <Link href="/about">
+                <a>About</a>
+            </Link>
+            <Link href="/contact">
+                <a>Contact</a>
+            </Link>
             <StyledDarkModeButton size="15px" />
         </BreadcrumbsWrap>
     );
