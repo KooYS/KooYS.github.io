@@ -167,11 +167,25 @@ const SkillWrap = styled.div`
 `;
 
 const Date = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
     & h4 {
         margin: 0;
     }
 `;
-const Content = styled.div``;
+const ContentWrap = styled.div``;
+const Content = styled.div`
+    & ul {
+        padding-left: 20px;
+        li {
+            margin: 5px 0;
+        }
+        div {
+            margin: 5px;
+        }
+    }
+`;
 const Title = styled.div`
     font-size: 18px;
     font-weight: bold;
@@ -432,13 +446,15 @@ const About = () => {
                                 <span className="blue">EDUCATION</span>
                             </h2>
                         </Row>
-                        <Date>
-                            <h4 className="gray">2013. 03 ~ 2020. 02</h4>
-                        </Date>
-                        <Content>
-                            <Title>중앙대학교 졸업</Title>
-                            <SubTitle>컴퓨터공학부</SubTitle>
-                        </Content>
+                        <ContentWrap>
+                            <Date>
+                                <h4 className="gray">2013. 03 ~ 2020. 02</h4>
+                            </Date>
+                            <Content>
+                                <Title>중앙대학교 졸업</Title>
+                                <SubTitle>컴퓨터공학부</SubTitle>
+                            </Content>
+                        </ContentWrap>
                     </Col>
                 </Row>
                 <Row>
@@ -449,170 +465,157 @@ const About = () => {
                             </h2>
                         </Row>
                         <div className="row">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <div className="row">
-                                            <div className="col-md-12 col">
-                                                <h4 className="gray">
-                                                    2017. 07 ~ 2017. 09
-                                                    <br />
-                                                </h4>
-                                            </div>
-                                            <div className="col-md-12 col-3 text-center text-md-right">
-                                                <span className="badge badge-info">
-                                                    3개월
-                                                </span>
-                                            </div>
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2017. 07 ~ 2017. 09
+                                    </h4>
+                                    <span className="badge badge-info">
+                                        3개월
+                                    </span>
+                                </Date>
+                                <Content>
+                                    <Title>중앙일보</Title>
+                                    <SubTitle>인턴 개발</SubTitle>
+                                    <ul>
+                                        <li>편집부의 기사를 Gamification</li>
+                                        <li>
+                                            편집부와 개발부의 브릿지 작업 담당
+                                        </li>
+                                        <li>
+                                            <strong>Skill Keywords</strong>
+                                        </li>
+                                        <div>
+                                            <span className="badge badge-secondary">
+                                                HTML,CSS
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                D3.js
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                JS
+                                            </span>
                                         </div>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>중앙일보</h4>
-                                        <i className="gray">인턴 개발</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                편집부의 기사를 Gamification
-                                            </li>
-                                            <li>
-                                                편집부와 개발부의 브릿지 작업
-                                                담당
-                                            </li>
-                                            <li>
-                                                <strong>Skill Keywords</strong>
-                                            </li>
-                                            <div>
-                                                <span className="badge badge-secondary">
-                                                    HTML,CSS
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    D3.js
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    JS
-                                                </span>
-                                            </div>
-                                        </ul>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <div className="row">
+                                <div className="col-md-3 col-12 text-md-right">
+                                    <div className="row">
+                                        <div className="col-md-12 col">
+                                            <h4 className="gray">
+                                                2018. 01 ~ 2018. 06
+                                                <br />
+                                            </h4>
+                                        </div>
+                                        <div className="col-md-12 col-3 text-center text-md-right">
+                                            <span className="badge badge-info">
+                                                6개월
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <div className="row">
-                                            <div className="col-md-12 col">
-                                                <h4 className="gray">
-                                                    2018. 01 ~ 2018. 06
-                                                    <br />
-                                                </h4>
-                                            </div>
-                                            <div className="col-md-12 col-3 text-center text-md-right">
-                                                <span className="badge badge-info">
-                                                    6개월
-                                                </span>
-                                            </div>
+                                <div className="col-md-9 col-12">
+                                    <h4>비버소프트</h4>
+                                    <i className="gray">사원</i>
+                                    <ul className="pt-3">
+                                        <li>
+                                            하이치과 백엔드 및 하이브리드앱
+                                            서비스 제작(웹뷰 - ios, android)
+                                        </li>
+                                        <li>
+                                            주베베 백엔드 및 하이브리드앱 서비스
+                                            제작(웹뷰 - ios, android)
+                                        </li>
+                                        <li>
+                                            <strong>Skill Keywords</strong>
+                                        </li>
+                                        <div>
+                                            <span className="badge badge-secondary">
+                                                PHP
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                HTML,CSS
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                JQuery
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Android Framework
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Ios Framework
+                                            </span>
                                         </div>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>비버소프트</h4>
-                                        <i className="gray">사원</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                하이치과 백엔드 및 하이브리드앱
-                                                서비스 제작(웹뷰 - ios, android)
-                                            </li>
-                                            <li>
-                                                주베베 백엔드 및 하이브리드앱
-                                                서비스 제작(웹뷰 - ios, android)
-                                            </li>
-                                            <li>
-                                                <strong>Skill Keywords</strong>
-                                            </li>
-                                            <div>
-                                                <span className="badge badge-secondary">
-                                                    PHP
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    HTML,CSS
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    JQuery
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Android Framework
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Ios Framework
-                                                </span>
-                                            </div>
-                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="row">
+                                <div className="col-md-3 col-12 text-md-right">
+                                    <div className="row">
+                                        <div className="col-md-12 col">
+                                            <h4 className="gray">
+                                                2018. 06 ~ 현재
+                                                <br />
+                                            </h4>
+                                        </div>
                                     </div>
                                 </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <div className="row">
-                                            <div className="col-md-12 col">
-                                                <h4 className="gray">
-                                                    2018. 06 ~ 현재
-                                                    <br />
-                                                </h4>
-                                            </div>
+                                <div className="col-md-9 col-12">
+                                    <h4>AMP</h4>
+                                    <i className="gray">공동창업자</i>
+                                    <ul className="pt-3">
+                                        <li>쿠폰빌 서비스 제작</li>
+                                        <li>
+                                            덕질 아이돌 팬 정보 큐레이션 서비스
+                                            제작
+                                        </li>
+                                        <li>
+                                            덕질 이커머스 서비스 제작(고도몰
+                                            기반)
+                                        </li>
+                                        <li>
+                                            덕질 리뉴얼 이커머스 서비스 제작 중
+                                        </li>
+                                        <li>덕질 NFT 서비스 제작 중</li>
+                                        <li>
+                                            <strong>Skill Keywords</strong>
+                                        </li>
+                                        <div>
+                                            <span className="badge badge-secondary">
+                                                HTML,CSS,JS
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                React
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Next.js
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Node
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Nest.js
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                AWS
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                PHP
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                JQuery
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Android Framework
+                                            </span>
+                                            <span className="badge badge-secondary">
+                                                Ios Framework
+                                            </span>
                                         </div>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>AMP</h4>
-                                        <i className="gray">공동창업자</i>
-                                        <ul className="pt-3">
-                                            <li>쿠폰빌 서비스 제작</li>
-                                            <li>
-                                                덕질 아이돌 팬 정보 큐레이션
-                                                서비스 제작
-                                            </li>
-                                            <li>
-                                                덕질 이커머스 서비스 제작(고도몰
-                                                기반)
-                                            </li>
-                                            <li>
-                                                덕질 리뉴얼 이커머스 서비스 제작
-                                                중
-                                            </li>
-                                            <li>덕질 NFT 서비스 제작 중</li>
-                                            <li>
-                                                <strong>Skill Keywords</strong>
-                                            </li>
-                                            <div>
-                                                <span className="badge badge-secondary">
-                                                    HTML,CSS,JS
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    React
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Next.js
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Node
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Nest.js
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    AWS
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    PHP
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    JQuery
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Android Framework
-                                                </span>
-                                                <span className="badge badge-secondary">
-                                                    Ios Framework
-                                                </span>
-                                            </div>
-                                        </ul>
-                                    </div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
