@@ -1,398 +1,453 @@
-import { css } from '@emotion/css';
+import styled from '@emotion/styled';
 import React from 'react';
 
-const aboutCss = css`
-    .resume {
-        font-family: 'Noto Sans KR', sans-serif;
-        font-weight: 300;
-        word-wrap: break-word;
-        word-break: keep-all;
-        line-height: 1.8;
-    }
+const Container = styled.div`
+    width: 100%;
+    font-weight: 300;
+    word-wrap: break-word;
+    word-break: keep-all;
+    line-height: 1.8;
 
-    .blue {
+    & a {
+        color: #007bff;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    & .blue {
         color: #3c78d8;
     }
 
-    .gray {
+    & .gray {
         color: gray;
     }
 
-    .profile-img {
+    & .profile-img {
         max-height: 160px;
     }
 
-    .footer-cover {
-        background-color: #f5f5f5;
-        padding-left: 0;
-        padding-right: 0;
-        margin-top: 50px;
-        height: 80px;
-    }
-
-    li.example_img {
+    & li.example_img {
         margin-top: 15px;
         display: flex;
         gap: 10px;
     }
-    li img {
+    & li img {
         width: auto;
         height: 300px;
         border-radius: 5px;
         border: 1px solid #e0e0e0;
         box-shadow: 5px 5px 5px #e0e0e0;
     }
-    .footer {
-        padding-top: 10px;
+
+    & .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.25em 0.4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+        margin-right: 5px;
+    }
+
+    .badge-pill {
+        padding-right: 0.6em;
+        padding-left: 0.6em;
+        border-radius: 10rem;
+    }
+
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .badge-info {
+        color: #fff;
+        background-color: #17a2b8;
+    }
+
+    .badge-secondary {
+        color: #fff;
+        background-color: #868e96;
+    }
+
+    .badge-light {
+        color: #111;
+        background-color: #f8f9fa;
+    }
+
+    hr {
+        margin: 25px 0 40px;
+    }
+
+    h2 {
+        margin: 20px 0;
     }
 `;
+
+const Row = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+const Col = styled.div`
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+`;
+
+const StyledMyName = styled.div`
+    ${(props) => props.theme.mq.mobile} {
+        text-align: center;
+    }
+    width: 100%;
+`;
+
+const StyledSimpleItem = styled.div`
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 15px 0;
+`;
+const StyledSimpleItemWrap = styled.div``;
+
+const Tooltip = styled.small<{ title: string }>`
+    & {
+        font-size: 15px;
+        margin-left: 5px;
+    }
+    & :hover {
+        position: relative;
+    }
+
+    & :hover::after {
+        content: '${({ title }) => title}';
+
+        white-space: pre;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        font-size: 12px;
+
+        z-index: 9999;
+
+        padding: 20px;
+        min-width: 200px;
+        width: 100%;
+        border-radius: 8px;
+    }
+`;
+
+const SkillWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 15px;
+
+    & h4 {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    & ul.non-badge li::before {
+        content: '○';
+        font-size: 13px;
+        padding-right: 1em;
+        padding-left: 0.2em;
+    }
+`;
+
+const Date = styled.div`
+    & h4 {
+        margin: 0;
+    }
+`;
+const Content = styled.div``;
+const Title = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+`;
+const SubTitle = styled.div`
+    font-size: 15px;
+`;
+
 const About = () => {
     return (
-        <div className={aboutCss}>
+        <>
             <link
                 rel="stylesheet"
                 href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             />
-            <link
-                rel="stylesheet"
-                href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
-            />
-            <link
-                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-                rel="stylesheet"
-                integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-                crossOrigin="anonymous"
-            />
 
-            <div className="container resume">
-                <div className="row mt-5">
-                    <div className="col-md-9 col-sm-12">
-                        <div className="row">
-                            <div className="col text-center text-md-left">
+            <Container>
+                <Row>
+                    <Col>
+                        <Row>
+                            <StyledMyName>
                                 <h1 className="black">구 영 서</h1>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col pt-3">
-                                <div className="row pb-2">
-                                    <div className="col-1 text-right">
-                                        <i
-                                            className="fa fa-envelope"
-                                            aria-hidden="true"></i>
-                                    </div>
-                                    <div className="col-auto">
-                                        <a
-                                            href="mailto:koo@duckzill.co"
-                                            target="_blank"
-                                            rel="noreferrer">
-                                            koo@duckzill.com
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="row pb-2">
-                                    <div className="col-1 text-right">
-                                        <i
-                                            className="fa fa-phone"
-                                            aria-hidden="true"></i>
-                                    </div>
-                                    <div className="col-auto">
-                                        <span className="badge badge-light">
-                                            010-8832-4207
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="row pb-2">
-                                    <div className="col-1 text-right">
-                                        <i
-                                            className="fa fa-github"
-                                            aria-hidden="true"></i>
-                                    </div>
-                                    <div className="col-auto">
-                                        <a
-                                            href="https://github.com/KooYS"
-                                            target="_blank"
-                                            rel="noreferrer">
-                                            https://github.com/KooYS
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row pt-5">
-                    <div className="col">
-                        <div className="row pb-3">
-                            <div className="col">
-                                <h2>
-                                    <span className="blue">SKILLS</span>
-                                    <small
-                                        data-toggle="tooltip"
-                                        title="1: 구체적으로는 잘 모르지만, 기본적인 지식과 경험은 가지고 있음 2: 사이드 프로젝트 수준의 개발이 가능, 3: Production 수준의 개발이 가능">
-                                        <i
-                                            className="fa fa-question-circle"
-                                            aria-hidden="true"></i>
-                                    </small>
-                                </h2>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12 col-md-3 text-md-right">
-                                <h4 className="gray">Back-end</h4>
-                            </div>
-                            <div className="col-12 col-md-9">
-                                <div className="row">
-                                    <div className="col">
-                                        <ul>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                Node
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                Nest.js
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                Express.js
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                Typeorm
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </StyledMyName>
+                        </Row>
+                        <Row>
+                            <StyledSimpleItemWrap>
+                                <StyledSimpleItem>
+                                    <i
+                                        className="fa fa-envelope"
+                                        aria-hidden="true"></i>
+                                    <a
+                                        href="mailto:koo@duckzill.co"
+                                        target="_blank"
+                                        rel="noreferrer">
+                                        koo@duckzill.com
+                                    </a>
+                                </StyledSimpleItem>
+                                <StyledSimpleItem>
+                                    <i
+                                        className="fa fa-phone"
+                                        aria-hidden="true"></i>
+                                    <span className="badge badge-light">
+                                        010-8832-4207
+                                    </span>
+                                </StyledSimpleItem>
+                                <StyledSimpleItem>
+                                    <i
+                                        className="fa fa-github"
+                                        aria-hidden="true"></i>
+                                    <a
+                                        href="https://github.com/KooYS"
+                                        target="_blank"
+                                        rel="noreferrer">
+                                        https://github.com/KooYS
+                                    </a>
+                                </StyledSimpleItem>
+                            </StyledSimpleItemWrap>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Row>
+                            <h2>
+                                <span className="blue">SKILLS</span>
+                                <Tooltip
+                                    title={
+                                        '1: 구체적으로는 잘 모르지만, 기본적인 지식과 경험은 가지고 있음 \\A 2: 사이드 프로젝트 수준의 개발이 가능 \\A 3: Production 수준의 개발이 가능'
+                                    }>
+                                    <i
+                                        className="fa fa-question-circle"
+                                        aria-hidden="true"></i>
+                                </Tooltip>
+                            </h2>
+                        </Row>
+                        <SkillWrap>
+                            <h4 className="gray">Back-end</h4>
+                            <ul>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    Node
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    Nest.js
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    Express.js
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    Typeorm
+                                </li>
+                            </ul>
+                        </SkillWrap>
                         <hr />
-                        <div className="row">
-                            <div className="col-12 col-md-3 text-md-right">
-                                <h4 className="gray">DevOps</h4>
-                            </div>
-                            <div className="col-12 col-md-9">
-                                <div className="row">
-                                    <div className="col">
-                                        <ul>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                AWS - EC2, S3, RDS, CloudFront,
-                                                Route53, CodeBuild, CodePipeline
-                                                CodeDeploy
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                AWS - ELB, Lambda, Beanstalk,
-                                                ElastiCache
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Docker
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                nginx
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <SkillWrap>
+                            <h4 className="gray">DevOps</h4>
+                            <ul>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    AWS - EC2, S3, RDS, CloudFront, Route53,
+                                    CodeBuild, CodePipeline CodeDeploy
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    AWS - ELB, Lambda, Beanstalk, ElastiCache
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Docker
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    nginx
+                                </li>
+                            </ul>
+                        </SkillWrap>
                         <hr />
-                        <div className="row">
-                            <div className="col-12 col-md-3 text-md-right">
-                                <h4 className="gray">Database</h4>
-                            </div>
-                            <div className="col-12 col-md-9">
-                                <div className="row">
-                                    <div className="col">
-                                        <ul>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                MySql
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                PostgreSQL
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <SkillWrap>
+                            <h4 className="gray">Database</h4>
+                            <ul>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    MySql
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    PostgreSQL
+                                </li>
+                            </ul>
+                        </SkillWrap>
                         <hr />
-                        <div className="row">
-                            <div className="col-12 col-md-3 text-md-right">
-                                <h4 className="gray">Front-end</h4>
-                            </div>
-                            <div className="col-12 col-md-9">
-                                <div className="row">
-                                    <div className="col">
-                                        <ul>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                React.js
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Eslint
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Husky
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Prettier
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-secondary">
-                                                    1
-                                                </span>
-                                                React-query
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="col">
-                                        <ul>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>
-                                                HTML/CSS/JS
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Next.js
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Recoil
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Typescript
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>
-                                                Emotion.js
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-secondary">
-                                                    1
-                                                </span>
-                                                Mobx
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <SkillWrap>
+                            <h4 className="gray">Front-end</h4>
+                            <ul>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    React.js
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Eslint
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Husky
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Prettier
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-secondary">
+                                        1
+                                    </span>
+                                    React-query
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    HTML/CSS/JS
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Next.js
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Recoil
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Typescript
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Emotion.js
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-secondary">
+                                        1
+                                    </span>
+                                    Mobx
+                                </li>
+                            </ul>
+                        </SkillWrap>
                         <hr />
-                        <div className="row">
-                            <div className="col-12 col-md-3 text-md-right">
-                                <h4 className="gray">Etc</h4>
-                            </div>
-                            <div className="col-12 col-md-9">
-                                <div className="row">
-                                    <div className="col">
-                                        <ul>
-                                            <li>
-                                                <span className="badge badge-pill badge-info">
-                                                    2
-                                                </span>{' '}
-                                                Docker
-                                            </li>
-                                            <li>
-                                                <span className="badge badge-pill badge-primary">
-                                                    3
-                                                </span>{' '}
-                                                Git / Github/ Git Action
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="col">
-                                        <ul>
-                                            <li>Slack</li>
-                                            <li>Figma</li>
-                                            <li>Linear</li>
-                                            <li>Zeplin</li>
-                                            <li>Swagger</li>
-                                            <li>Postman</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row pt-5">
-                    <div className="col">
-                        <div className="row pb-3">
-                            <div className="col">
-                                <h2 className="blue">EDUCATION</h2>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2013. 03 ~ 2020. 02
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>중앙대학교 졸업</h4>
-                                        <i className="gray">컴퓨터공학부</i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row pt-5">
-                    <div className="col">
-                        <div className="row pb-3">
-                            <div className="col">
-                                <h2 className="blue">EXPERIENCE</h2>
-                            </div>
-                        </div>
+                        <SkillWrap>
+                            <h4 className="gray">Etc</h4>
+                            <ul>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Docker
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    Git / Github/ Git Action
+                                </li>
+                            </ul>
+                            <ul className="non-badge">
+                                <li>Slack</li>
+                                <li>Figma</li>
+                                <li>Linear</li>
+                                <li>Zeplin</li>
+                                <li>Swagger</li>
+                                <li>Postman</li>
+                            </ul>
+                        </SkillWrap>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Row>
+                            <h2>
+                                <span className="blue">EDUCATION</span>
+                            </h2>
+                        </Row>
+                        <Date>
+                            <h4 className="gray">2013. 03 ~ 2020. 02</h4>
+                        </Date>
+                        <Content>
+                            <Title>중앙대학교 졸업</Title>
+                            <SubTitle>컴퓨터공학부</SubTitle>
+                        </Content>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Row>
+                            <h2>
+                                <span className="blue">EXPERIENCE</span>
+                            </h2>
+                        </Row>
                         <div className="row">
                             <div className="col">
                                 <div className="row">
@@ -561,15 +616,15 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="row pt-5">
-                    <div className="col">
-                        <div className="row pb-3">
-                            <div className="col">
-                                <h2 className="blue">PROJECTS</h2>
-                            </div>
-                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Row>
+                            <h2>
+                                <span className="blue">PROJECTS</span>
+                            </h2>
+                        </Row>
                         <div className="row">
                             <div className="col">
                                 <div className="row">
@@ -920,15 +975,15 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="row pt-5">
-                    <div className="col">
-                        <div className="row pb-3">
-                            <div className="col">
-                                <h2 className="blue">ETC</h2>
-                            </div>
-                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Row>
+                            <h2>
+                                <span className="blue">ETC</span>
+                            </h2>
+                        </Row>
                         <div className="row">
                             <div className="col">
                                 <div className="row">
@@ -963,10 +1018,10 @@ const About = () => {
                                 <hr />
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 };
 
