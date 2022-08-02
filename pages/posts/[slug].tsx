@@ -6,7 +6,12 @@ import { getAllPosts, getPostBySlug } from '@/libs/post';
 import rehypeHighlight from 'rehype-highlight';
 import Utterances from '@/components/Utterances';
 import CodeSandBox from '@/components/CodeSandBox';
-
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeToc, {
+    HtmlElementNode,
+    ListItemNode,
+} from '@jsdevtools/rehype-toc';
 const components = {
     Box: (props: any) => <p {...props} />,
     CodeSandBox: (props: any) => <CodeSandBox {...props} />,
@@ -18,6 +23,7 @@ export default function Post({ post }: any) {
         return <ErrorPage statusCode={404} />;
     }
 
+    console.log(post.headings);
     return (
         <div>
             {router.isFallback ? (
@@ -44,8 +50,26 @@ export async function getStaticProps({ params }: any) {
         'ogImage',
         'coverImage',
     ]);
+    let headings: HtmlElementNode[] = [];
     const content = await serialize(post.content || '', {
-        mdxOptions: { rehypePlugins: [rehypeHighlight] },
+        mdxOptions: {
+            rehypePlugins: [
+                rehypeHighlight,
+                rehypeSlug,
+                rehypeAutolinkHeadings,
+                [
+                    rehypeToc,
+                    {
+                        headings: ['h1', 'h2'],
+                        customizeTOC: () => false,
+                        customizeTOCItem: (
+                            tocItem: ListItemNode,
+                            heading: HtmlElementNode
+                        ) => headings.push(heading),
+                    },
+                ],
+            ],
+        },
     });
 
     return {
@@ -53,6 +77,7 @@ export async function getStaticProps({ params }: any) {
             post: {
                 ...post,
                 content,
+                headings,
             },
         },
     };
