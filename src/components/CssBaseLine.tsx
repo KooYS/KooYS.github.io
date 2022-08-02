@@ -131,6 +131,10 @@ const CssBaseLine = () => {
                 color: #ffdcd7;
                 background-color: #67060c;
             }
+
+            .utteranc-light {
+                display: none;
+            }
         }
     `;
 
@@ -263,6 +267,10 @@ const CssBaseLine = () => {
             .hljs-deletion {
                 color: #b31d28;
                 background-color: #ffeef0;
+            }
+
+            .utteranc-dark {
+                display: none;
             }
         }
     `;

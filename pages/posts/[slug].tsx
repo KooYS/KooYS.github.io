@@ -4,6 +4,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import { getAllPosts, getPostBySlug } from '@/libs/post';
 import rehypeHighlight from 'rehype-highlight';
+import Utterances from '@/components/Utterances';
 
 const components = {
     Box: (props: any) => <p {...props} />,
@@ -26,6 +27,7 @@ export default function Post({ post }: any) {
                     <article className="markdown-body">
                         <MDXRemote {...post.content} components={components} />
                     </article>
+                    <Utterances />
                 </>
             )}
         </div>
