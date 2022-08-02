@@ -5,11 +5,11 @@ import { MDXRemote } from 'next-mdx-remote';
 import { getAllPosts, getPostBySlug } from '@/libs/post';
 import rehypeHighlight from 'rehype-highlight';
 import Utterances from '@/components/Utterances';
+import CodeSandBox from '@/components/CodeSandBox';
 
 const components = {
     Box: (props: any) => <p {...props} />,
-    //코드 스타일링
-    // code: CodeBlock,
+    CodeSandBox: (props: any) => <CodeSandBox {...props} />,
 };
 
 export default function Post({ post }: any) {

@@ -3,7 +3,6 @@
         "next/core-web-vitals",
         "eslint:recommended",
         "plugin:prettier/recommended",
-        "plugin:markdown/recommended",
         "plugin:mdx/recommended"
     ],
     "rules": {
@@ -11,7 +10,7 @@
     },
     "overrides": [
         {
-            "files": ["**/*.mdx"],
+            "files": ["*.mdx"],
             "rules": {
                 "react/jsx-no-undef": "off"
             }

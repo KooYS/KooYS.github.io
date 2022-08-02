@@ -135,6 +135,10 @@ const CssBaseLine = () => {
             .utteranc-light {
                 display: none;
             }
+
+            .codesandbox-light {
+                display: none;
+            }
         }
     `;
 
@@ -270,6 +274,9 @@ const CssBaseLine = () => {
             }
 
             .utteranc-dark {
+                display: none;
+            }
+            .codesandbox-dark {
                 display: none;
             }
         }
