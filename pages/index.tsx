@@ -1,25 +1,21 @@
+import { MyPage } from '@/@types/next-page';
 import { getAllPosts } from '@/libs/post';
 import styled from '@emotion/styled';
-import type { NextPage } from 'next';
-import { NextSeo } from 'next-seo';
 
 const Wrap = styled.div`
     width: 100%;
     height: 5000px;
     background-color: black;
 `;
-const Home: NextPage & { description?: string } = ({ allPosts }: any) => {
+
+const Home: MyPage = ({ allPosts }: any) => {
     console.log(allPosts);
 
-    return (
-        <Wrap>
-            <NextSeo title="Home" description="Home" />
-        </Wrap>
-    );
+    return <Wrap></Wrap>;
 };
 
-Home.displayName = 'Home';
-Home.description = 'HomeTie';
+Home.title = 'Home';
+Home.description = '환영합니다.';
 export const getStaticProps = async () => {
     const allPosts = getAllPosts([
         'title',

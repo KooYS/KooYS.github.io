@@ -1,22 +1,23 @@
-import type { AppProps } from 'next/app';
 import CssBaseLine from '@/components/CssBaseLine';
 import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
-import { DefaultSeo, NextSeo } from 'next-seo';
+import { DefaultSeo } from 'next-seo';
 import { seoYear } from '@/libs/seo';
 import theme from 'styles/theme';
 import Layout from '@/components/Layout';
 import 'styles/markdown.css';
+import { MyAppProps } from '@/@types/next-page';
 
-function MyApp({ Component, pageProps }: AppProps) {
-    // console.log('pageProps', Component.displayName, Component.description);
+function MyApp({ Component, pageProps }: MyAppProps) {
     return (
         <>
             <DefaultSeo
                 titleTemplate={`${seoYear()} KooYS Blog | %s`}
+                title={Component?.title}
+                description={Component?.description}
                 openGraph={{
-                    title: 'KooYS Blog',
-                    description: 'Development Blog',
+                    title: Component.title,
+                    description: Component.description,
                     images: [
                         {
                             url: 'og.png',
@@ -36,7 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ThemeProvider theme={theme}>
                 <Layout>
                     <CssBaseLine />
-                    <NextSeo title="Home" description="Home" />
                     <Component {...pageProps} />
                 </Layout>
             </ThemeProvider>
