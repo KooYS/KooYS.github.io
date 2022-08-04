@@ -35,7 +35,6 @@ const Container = styled.div`
         height: 300px;
         border-radius: 5px;
         border: 1px solid #e0e0e0;
-        box-shadow: 5px 5px 5px #e0e0e0;
     }
 
     & .col-12 {
@@ -141,8 +140,6 @@ const Tooltip = styled.small<{ title: string }>`
         z-index: 9999;
 
         padding: 20px;
-        min-width: 200px;
-        width: 100%;
         border-radius: 8px;
     }
 `;
@@ -170,19 +167,27 @@ const Date = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin: 10px 0 0;
+
     & h4 {
         margin: 0;
     }
 `;
-const ContentWrap = styled.div``;
+const ContentWrap = styled.div`
+    margin-left: 15px;
+`;
 const Content = styled.div`
     & ul {
-        padding-left: 20px;
+        padding-left: 15px;
+        margin-bottom: 50px;
         li {
             margin: 5px 0;
+            & ul {
+                margin-bottom: 0px;
+            }
         }
         div {
-            margin: 5px;
+            margin: 0 15px;
         }
     }
 `;
@@ -499,26 +504,19 @@ const About = () => {
                                 </Content>
                             </ContentWrap>
                             <hr />
-                            <div className="row">
-                                <div className="col-md-3 col-12 text-md-right">
-                                    <div className="row">
-                                        <div className="col-md-12 col">
-                                            <h4 className="gray">
-                                                2018. 01 ~ 2018. 06
-                                                <br />
-                                            </h4>
-                                        </div>
-                                        <div className="col-md-12 col-3 text-center text-md-right">
-                                            <span className="badge badge-info">
-                                                6개월
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-9 col-12">
-                                    <h4>비버소프트</h4>
-                                    <i className="gray">사원</i>
-                                    <ul className="pt-3">
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2018. 01 ~ 2018. 06
+                                    </h4>
+                                    <span className="badge badge-info">
+                                        6개월
+                                    </span>
+                                </Date>
+                                <Content>
+                                    <Title>비버소프트</Title>
+                                    <SubTitle>사원</SubTitle>
+                                    <ul>
                                         <li>
                                             하이치과 백엔드 및 하이브리드앱
                                             서비스 제작(웹뷰 - ios, android)
@@ -548,24 +546,20 @@ const About = () => {
                                             </span>
                                         </div>
                                     </ul>
-                                </div>
-                            </div>
+                                </Content>
+                            </ContentWrap>
                             <hr />
-                            <div className="row">
-                                <div className="col-md-3 col-12 text-md-right">
-                                    <div className="row">
-                                        <div className="col-md-12 col">
-                                            <h4 className="gray">
-                                                2018. 06 ~ 현재
-                                                <br />
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-9 col-12">
-                                    <h4>AMP</h4>
-                                    <i className="gray">공동창업자</i>
-                                    <ul className="pt-3">
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2018. 06 ~ 현재
+                                        <br />
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>AMP</Title>
+                                    <SubTitle>Co-founder</SubTitle>
+                                    <ul>
                                         <li>쿠폰빌 서비스 제작</li>
                                         <li>
                                             덕질 아이돌 팬 정보 큐레이션 서비스
@@ -615,8 +609,8 @@ const About = () => {
                                             </span>
                                         </div>
                                     </ul>
-                                </div>
-                            </div>
+                                </Content>
+                            </ContentWrap>
                         </div>
                     </Col>
                 </Row>
@@ -628,354 +622,361 @@ const About = () => {
                             </h2>
                         </Row>
                         <div className="row">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2018. 06 ~ 2018. 12
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>테마 기반 맛집 큐레이션 서비스</h4>
-                                        <i className="gray">쿠폰빌</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                PHP를 이용하여 서비스 구성 -
-                                                CodeIgniter(MVC 패턴)
-                                            </li>
-                                            <li>
-                                                기본 CodeIgniter 템플릿을
-                                                이용하여 SSR 처리
-                                            </li>
-                                            <li>
-                                                웹뷰를 통하여 Web 베이스의
-                                                Android, Ios의 하이브리드 패키징
-                                                작업
-                                            </li>
-                                            <li>
-                                                User App, Client, Admin 3가지
-                                                파트로 구성
-                                            </li>
-                                            <li>
-                                                Python을 이용하여 리뷰 분석기
-                                                개발
-                                            </li>
-                                            <li className="example_img">
-                                                <img
-                                                    src="./images/about/couponvill/1.png"
-                                                    alt="couponvill"
-                                                />
-                                                <img
-                                                    src="./images/about/couponvill/2.png"
-                                                    alt="couponvill"
-                                                />
-                                                <img
-                                                    src="./images/about/couponvill/3.png"
-                                                    alt="couponvill"
-                                                />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2019. 01 ~ 2019. 07
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>
-                                            Duckzill 아이돌 팬 정보 큐레이션
-                                            서비스
-                                        </h4>
-                                        <i className="gray">AMP</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                팬들이 주최하는 이벤트,
-                                                지하철광고 등 이벤트를 한 곳으로
-                                                모아 큐레이팅 해주는 서비스
-                                            </li>
-                                            <li>
-                                                <strong>FrontEnd</strong>
-                                                <ul>
-                                                    Nextjs, Apollo, GraphQL,
-                                                    React, Mobx
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <strong>Backend</strong>
-                                                <ul>node, express</ul>
-                                            </li>
-                                            <li>
-                                                <strong>CI/CD</strong>
-                                                <ul>Jenkins</ul>
-                                            </li>
-                                            <li>
-                                                <strong>ETC</strong>
-                                                <ul>
-                                                    <li>
-                                                        트위터에서 이벤트를
-                                                        크롤링해주는 마케터 전용
-                                                        프로그램 개발
-                                                    </li>
-                                                    <li>SEO 구성</li>
-                                                    <li>
-                                                        Active User 53만, 해외
-                                                        이용자 6만, SNS 콘텐츠
-                                                        노출 수 1,525만
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="example_img">
-                                                <img
-                                                    src="./images/about/duckzill/1.png"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill/2.png"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill/3.png"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill/4.png"
-                                                    alt="duckzill"
-                                                />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2019. 07 ~ 현재
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>Duckzill Shop 서비스</h4>
-                                        <i className="gray">AMP</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                <strong>
-                                                    <a
-                                                        href="https://shop.duckzill.com/"
-                                                        target="_blank"
-                                                        rel="noreferrer">
-                                                        https://shop.duckzill.com
-                                                    </a>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                Shopify 기반의 이커머스 제작
-                                            </li>
-                                            <li>
-                                                고도몰 기반의 오픈형 이커머스
-                                                2차 제작
-                                            </li>
-                                            <li>
-                                                고도몰 관리자, 공급사, 유저
-                                                페이지 커스텀 작업
-                                            </li>
-                                            <li>입점 프로세스 추가</li>
-                                            <li>
-                                                Notion과 공급사 정산 프로세스
-                                                연동 - 간편 정산 기능 추가
-                                            </li>
-                                            <li>수요조사 및 입금폼 추가</li>
-                                            <li>
-                                                Spring boot를 이용하여 Event,
-                                                Store, User Api 개발
-                                            </li>
-                                            <li>
-                                                외부 데이터 핸들링 백오피스 개발
-                                            </li>
-                                            <li className="example_img">
-                                                <img
-                                                    src="./images/about/duckzill_shop/1.jpg"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill_shop/2.jpg"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill_shop/3.jpg"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill_shop/4.jpg"
-                                                    alt="duckzill"
-                                                />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2020. 12 ~ 현재
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>Duckzill NFT Project - Backend</h4>
-                                        <i className="gray">AMP</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                클레이튼 기반의 NFT 드랍 온,
-                                                오프라인 이벤트
-                                            </li>
-                                            <li>
-                                                <strong>Backend</strong>
-                                                <ul>
-                                                    <li>
-                                                        서버 프레임워크는
-                                                        Nest.js + Typescript
-                                                        사용
-                                                    </li>
-                                                    <li>
-                                                        개발 서버는 AWS
-                                                        CodePipeline, CodeBuild,
-                                                        CodeDeploy 사용
-                                                    </li>
-                                                    <li>
-                                                        운영 서버는 AWS
-                                                        Beanstalk + ECR + Git
-                                                        Action을 이용한 Docker
-                                                        기반으로 무중단
-                                                        배포(Auto scaling,
-                                                        Immutable 배포)
-                                                    </li>
-                                                    <li>
-                                                        ElastiCache를 이용한
-                                                        in-memory 기반 session
-                                                        인증 사용
-                                                    </li>
-                                                    <li>
-                                                        Klaytn API Service 와
-                                                        Klip app2app api 사용
-                                                    </li>
-                                                    <li>
-                                                        이벤트 당첨 알고리즘
-                                                        추가(응모시간 기반)
-                                                    </li>
-                                                    <li>
-                                                        이미지 최적화(On-demand
-                                                        resizing) 적용
-                                                    </li>
-                                                    <li>
-                                                        husky, eslint, prettier
-                                                        적용
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <strong>ETC</strong>
-                                                <ul>
-                                                    <li>
-                                                        Slack, Linear, Github,
-                                                        Postman, Figma
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2020. 12 ~ 현재
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>Duckzill Shop 리뉴얼 서비스</h4>
-                                        <i className="gray">AMP</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                솔루션 의존도를 없애고 확장성을
-                                                고려한 자체 이커머스 개발 중
-                                            </li>
-                                            <li>프로젝트 총괄</li>
-                                            <li>
-                                                <strong>Backend</strong>
-                                                <ul>
-                                                    <li>
-                                                        서버 프레임워크는 node를
-                                                        사용
-                                                    </li>
-                                                    <li>
-                                                        개발 서버는 AWS
-                                                        CodePipeline, CodeBuild,
-                                                        CodeDeploy 사용
-                                                    </li>
-                                                    <li>
-                                                        jwt 기반 토큰 인증 사용
-                                                    </li>
-                                                    <li>
-                                                        husky, eslint, prettier
-                                                        적용
-                                                    </li>
-                                                    <li>
-                                                        셀러와 메인어드민은
-                                                        Next.js의 API Routes
-                                                        사용
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <strong>Frontend</strong>
-                                                <ul>
-                                                    <li>
-                                                        Next.js와 Emotion,
-                                                        Redux를 사용
-                                                    </li>
-                                                    <li>
-                                                        개발 서버는 AWS
-                                                        CodePipeline, CodeBuild,
-                                                        CodeDeploy 사용
-                                                    </li>
-                                                    <li>
-                                                        husky, eslint, prettier
-                                                        적용
-                                                    </li>
-                                                    <li>
-                                                        셀러와 메인어드민 또한
-                                                        Next.js로 구성
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <strong>ETC</strong>
-                                                <ul>
-                                                    <li>
-                                                        Slack, Linear, Github,
-                                                        Swagger, Zeplin
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="example_img">
-                                                <img
-                                                    src="./images/about/duckzill_shop2/1.png"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill_shop2/2.png"
-                                                    alt="duckzill"
-                                                />
-                                                <img
-                                                    src="./images/about/duckzill_shop2/3.png"
-                                                    alt="duckzill"
-                                                />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2018. 06 ~ 2018. 12
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>
+                                        테마 기반 맛집 큐레이션 서비스
+                                    </Title>
+                                    <SubTitle>쿠폰빌</SubTitle>
+                                    <ul>
+                                        <li>
+                                            PHP를 이용하여 서비스 구성 -
+                                            CodeIgniter(MVC 패턴)
+                                        </li>
+                                        <li>
+                                            기본 CodeIgniter 템플릿을 이용하여
+                                            SSR 처리
+                                        </li>
+                                        <li>
+                                            웹뷰를 통하여 Web 베이스의 Android,
+                                            Ios의 하이브리드 패키징 작업
+                                        </li>
+                                        <li>
+                                            User App, Client, Admin 3가지 파트로
+                                            구성
+                                        </li>
+                                        <li>
+                                            Python을 이용하여 리뷰 분석기 개발
+                                        </li>
+                                        <li className="example_img">
+                                            <img
+                                                src="./images/about/couponvill/1.png"
+                                                alt="couponvill"
+                                            />
+                                            <img
+                                                src="./images/about/couponvill/2.png"
+                                                alt="couponvill"
+                                            />
+                                            <img
+                                                src="./images/about/couponvill/3.png"
+                                                alt="couponvill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2019. 01 ~ 2019. 07
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>
+                                        Duckzill 아이돌 팬 정보 큐레이션 서비스
+                                    </Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <ul>
+                                        <li>
+                                            팬들이 주최하는 이벤트, 지하철광고
+                                            등 이벤트를 한 곳으로 모아 큐레이팅
+                                            해주는 서비스
+                                        </li>
+                                        <li>
+                                            <strong>FrontEnd</strong>
+                                            <ul>
+                                                <span className="badge badge-secondary">
+                                                    Nextjs
+                                                </span>
+                                                <span className="badge badge-secondary">
+                                                    Apollo
+                                                </span>
+                                                <span className="badge badge-secondary">
+                                                    GraphQL
+                                                </span>
+                                                <span className="badge badge-secondary">
+                                                    React
+                                                </span>
+                                                <span className="badge badge-secondary">
+                                                    Mobx
+                                                </span>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <span className="badge badge-secondary">
+                                                    Node
+                                                </span>
+                                                <span className="badge badge-secondary">
+                                                    Express
+                                                </span>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <span className="badge badge-secondary">
+                                                    Jenkins
+                                                </span>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    트위터에서 이벤트를
+                                                    크롤링해주는 마케터 전용
+                                                    프로그램 개발
+                                                </li>
+                                                <li>SEO 구성</li>
+                                                <li>
+                                                    Active User 53만, 해외
+                                                    이용자 6만, SNS 콘텐츠 노출
+                                                    수 1,525만
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <img
+                                                src="./images/about/duckzill/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill/2.png"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill/3.png"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill/4.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">2019. 07 ~ 현재</h4>
+                                </Date>
+                                <Content>
+                                    <Title>Duckzill Shop 서비스</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <ul>
+                                        <li>
+                                            <strong>
+                                                <a
+                                                    href="https://shop.duckzill.com/"
+                                                    target="_blank"
+                                                    rel="noreferrer">
+                                                    https://shop.duckzill.com
+                                                </a>
+                                            </strong>
+                                        </li>
+                                        <li>Shopify 기반의 이커머스 제작</li>
+                                        <li>
+                                            고도몰 기반의 오픈형 이커머스 2차
+                                            제작
+                                        </li>
+                                        <li>
+                                            고도몰 관리자, 공급사, 유저 페이지
+                                            커스텀 작업
+                                        </li>
+                                        <li>입점 프로세스 추가</li>
+                                        <li>
+                                            Notion과 공급사 정산 프로세스 연동 -
+                                            간편 정산 기능 추가
+                                        </li>
+                                        <li>수요조사 및 입금폼 추가</li>
+                                        <li>
+                                            Spring boot를 이용하여 Event, Store,
+                                            User Api 개발
+                                        </li>
+                                        <li>
+                                            외부 데이터 핸들링 백오피스 개발
+                                        </li>
+                                        <li className="example_img">
+                                            <img
+                                                src="./images/about/duckzill_shop/1.jpg"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill_shop/2.jpg"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill_shop/3.jpg"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill_shop/4.jpg"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">2020. 12 ~ 현재</h4>
+                                </Date>
+                                <Content>
+                                    <Title>
+                                        Duckzill NFT Project - Backend
+                                    </Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <ul>
+                                        <li>
+                                            클레이튼 기반의 NFT 드랍 온,
+                                            오프라인 이벤트
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>
+                                                    서버 프레임워크는 Nest.js +
+                                                    Typescript 사용
+                                                </li>
+                                                <li>
+                                                    개발 서버는 AWS
+                                                    CodePipeline, CodeBuild,
+                                                    CodeDeploy 사용
+                                                </li>
+                                                <li>
+                                                    운영 서버는 AWS Beanstalk +
+                                                    ECR + Git Action을 이용한
+                                                    Docker 기반으로 무중단
+                                                    배포(Auto scaling, Immutable
+                                                    배포)
+                                                </li>
+                                                <li>
+                                                    ElastiCache를 이용한
+                                                    in-memory 기반 session 인증
+                                                    사용
+                                                </li>
+                                                <li>
+                                                    Klaytn API Service 와 Klip
+                                                    app2app api 사용
+                                                </li>
+                                                <li>
+                                                    이벤트 당첨 알고리즘
+                                                    추가(응모시간 기반)
+                                                </li>
+                                                <li>
+                                                    이미지 최적화(On-demand
+                                                    resizing) 적용
+                                                </li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    Slack, Linear, Github,
+                                                    Postman, Figma
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">2020. 12 ~ 현재</h4>
+                                </Date>
+                                <Content>
+                                    <Title>Duckzill Shop 리뉴얼 서비스</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <ul>
+                                        <li>
+                                            솔루션 의존도를 없애고 확장성을
+                                            고려한 자체 이커머스 개발 중
+                                        </li>
+                                        <li>프로젝트 총괄</li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>
+                                                    서버 프레임워크는 node를
+                                                    사용
+                                                </li>
+                                                <li>
+                                                    개발 서버는 AWS
+                                                    CodePipeline, CodeBuild,
+                                                    CodeDeploy 사용
+                                                </li>
+                                                <li>jwt 기반 토큰 인증 사용</li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                                <li>
+                                                    셀러와 메인어드민은
+                                                    Next.js의 API Routes 사용
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>
+                                                    Next.js와 Emotion, Redux를
+                                                    사용
+                                                </li>
+                                                <li>
+                                                    개발 서버는 AWS
+                                                    CodePipeline, CodeBuild,
+                                                    CodeDeploy 사용
+                                                </li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                                <li>
+                                                    셀러와 메인어드민 또한
+                                                    Next.js로 구성
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    Slack, Linear, Github,
+                                                    Swagger, Zeplin
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <img
+                                                src="./images/about/duckzill_shop2/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill_shop2/2.png"
+                                                alt="duckzill"
+                                            />
+                                            <img
+                                                src="./images/about/duckzill_shop2/3.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
                         </div>
                     </Col>
                 </Row>
@@ -987,38 +988,33 @@ const About = () => {
                             </h2>
                         </Row>
                         <div className="row">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-md-3 col-12 text-md-right">
-                                        <h4 className="gray">
-                                            2022. 01 ~ 현재
-                                        </h4>
-                                    </div>
-                                    <div className="col-md-9 col-12">
-                                        <h4>기술 블로그 운영</h4>
-                                        <i className="gray">개인 블로그</i>
-                                        <ul className="pt-3">
-                                            <li>
-                                                <a
-                                                    href="https://0seo.tistory.com/"
-                                                    target="_blank"
-                                                    rel="noreferrer">
-                                                    https://0seo.tistory.com
-                                                </a>
-                                            </li>
-                                            <li>
-                                                22년 초부터 취미로 기술 블로그
-                                                운영
-                                            </li>
-                                            <li>
-                                                사이드 프로젝트 및 개발에
-                                                사용하는 프로세스 기록할 예정
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <hr />
-                            </div>
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">2022. 01 ~ 현재</h4>
+                                </Date>
+                                <Content>
+                                    <Title>기술 블로그 운영</Title>
+                                    <SubTitle>개인 블로그</SubTitle>
+                                    <ul>
+                                        <li>
+                                            <a
+                                                href="https://0seo.tistory.com/"
+                                                target="_blank"
+                                                rel="noreferrer">
+                                                https://0seo.tistory.com
+                                            </a>
+                                        </li>
+                                        <li>
+                                            22년 초부터 취미로 기술 블로그 운영
+                                        </li>
+                                        <li>
+                                            사이드 프로젝트 및 개발에 사용하는
+                                            프로세스 기록할 예정
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
                         </div>
                     </Col>
                 </Row>
