@@ -40,6 +40,7 @@ const LogoWrap = styled.a`
     & img {
         width: 32px;
         aspect-ratio: 1;
+        border: 1px solid #eaeaea;
         border-radius: 50%;
     }
 `;
@@ -52,7 +53,7 @@ const GNB = () => {
                         src="https://avatars.githubusercontent.com/u/17160263?v=4"
                         alt="avatar"
                     />
-                    KooYS
+                    BloKoo
                 </LogoWrap>
                 <Breadcrumb />
             </Wrap>

@@ -1,17 +1,18 @@
 import { MyPage } from '@/@types/next-page';
+import BlogList from '@/containers/BlogList';
 import { getAllPosts } from '@/libs/post';
 import styled from '@emotion/styled';
 
 const Wrap = styled.div`
     width: 100%;
-    height: 5000px;
-    background-color: black;
 `;
 
 const Home: MyPage = ({ allPosts }: any) => {
-    console.log(allPosts);
-
-    return <Wrap></Wrap>;
+    return (
+        <Wrap>
+            <BlogList list={allPosts} />
+        </Wrap>
+    );
 };
 
 Home.title = 'Home';

@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     return (
         <>
             <DefaultSeo
-                titleTemplate={`${seoYear()} KooYS Blog | %s`}
+                titleTemplate={`${seoYear()} BloKoo | %s`}
                 title={Component?.title}
                 description={Component?.description}
                 openGraph={{
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
                             url: 'og.png',
                             width: 1200,
                             height: 630,
-                            alt: 'KooYS',
+                            alt: 'BloKoo',
                         },
                     ],
                 }}
