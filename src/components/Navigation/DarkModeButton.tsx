@@ -10,6 +10,9 @@ const StyledButton = styled.a<Props>`
     font-size: ${({ size }) => (size ? size : '30px')};
     display: flex;
     align-items: center;
+    &:hover {
+        color: var(--color-border-default);
+    }
 `;
 
 const StyledBsMoonFill = styled(BsMoonFill)`

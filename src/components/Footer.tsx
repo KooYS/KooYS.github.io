@@ -1,4 +1,3 @@
-import useDarkMode from '@/hooks/useDarkMode';
 import styled from '@emotion/styled';
 import React from 'react';
 import { BsGithub } from 'react-icons/bs';
@@ -30,20 +29,23 @@ const Social = styled.div`
     font-size: 30px;
     width: 200px;
     justify-content: flex-end;
-
+    cursor: pointer;
     ${(props) => props.theme.mq.mobile} {
         justify-content: center;
     }
 `;
 const Footer = () => {
-    const { toggle } = useDarkMode();
-
     return (
         <StyledFooter>
-            <Copyright onClick={toggle}>Copyright 2022 KooYS</Copyright>
+            <Copyright>Copyright 2022 KooYS</Copyright>
             <DarkModeButton />
             <Social>
-                <BsGithub />
+                <a
+                    href="https://github.com/KooYS"
+                    target={'_blank'}
+                    rel="noreferrer">
+                    <BsGithub />
+                </a>
             </Social>
         </StyledFooter>
     );

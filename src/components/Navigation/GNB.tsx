@@ -33,7 +33,7 @@ const LogoWrap = styled.a`
     padding: 5px 10px;
 
     & :hover {
-        background: #e6e6e6;
+        background: var(--color-border-default);
         border-radius: 5px;
     }
 

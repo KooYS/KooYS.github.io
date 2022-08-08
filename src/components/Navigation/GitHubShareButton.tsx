@@ -2,6 +2,10 @@ import { FC } from 'react';
 import styled from '@emotion/styled';
 
 const StyledA = styled.a`
+    & svg {
+        color: var(--color-canvas-default);
+        fill: var(--color-fg-default);
+    }
     @media (max-width: 1360px) {
         & {
             display: none;
@@ -50,8 +54,6 @@ export const GitHubShareButton: FC = () => {
                 height="80"
                 viewBox="0 0 250 250"
                 style={{
-                    fill: 'black',
-                    color: '#fff',
                     position: 'absolute',
                     zIndex: 1001,
                     top: 0,

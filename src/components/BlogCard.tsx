@@ -26,6 +26,9 @@ const ImageWrap = styled.div`
         object-fit: cover;
         object-position: center 10%;
     }
+    .light & img {
+        border: 1px solid #f0f0f0;
+    }
 `;
 
 const ContentBody = styled.div`

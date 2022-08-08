@@ -304,6 +304,12 @@ const CssBaseLine = () => {
                     font-family: Verdana;
                     color: var(--color-fg-default);
                     background-color: var(--color-canvas-default);
+
+                    -ms-overflow-style: none;
+                    *::-webkit-scrollbar {
+                        display: none;
+                        width: 0 !important;
+                    }
                 }
                 ol,
                 ul {

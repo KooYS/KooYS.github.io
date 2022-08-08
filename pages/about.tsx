@@ -29,6 +29,11 @@ const Container = styled.div`
         margin-top: 15px;
         display: flex;
         gap: 10px;
+
+        ${(props) => props.theme.mq.mobile} {
+            overflow: hidden;
+            overflow-x: scroll;
+        }
     }
     & li img {
         width: auto;
@@ -199,6 +204,27 @@ const SubTitle = styled.div`
     font-size: 15px;
 `;
 
+const StyledFigure = styled.figure`
+    margin: 0;
+
+    & figcaption {
+        font-size: 12px;
+        margin: 0 2px;
+    }
+`;
+const StyledImage: React.FC<{ src: string; alt: string; caption?: string }> = ({
+    src,
+    caption,
+    alt,
+}) => {
+    return (
+        <StyledFigure>
+            <img src={src} alt={alt} />
+            {caption && <figcaption>{caption}</figcaption>}
+        </StyledFigure>
+    );
+};
+
 const About = () => {
     return (
         <>
@@ -348,28 +374,28 @@ const About = () => {
                             <h4 className="gray">Front-end</h4>
                             <ul>
                                 <li>
-                                    <span className="badge badge-pill badge-info">
-                                        2
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    HTML/CSS/JS
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
                                     </span>
                                     React.js
                                 </li>
                                 <li>
-                                    <span className="badge badge-pill badge-info">
-                                        2
+                                    <span className="badge badge-pill badge-primary">
+                                        3
                                     </span>
-                                    Eslint
+                                    Next.js
                                 </li>
                                 <li>
                                     <span className="badge badge-pill badge-info">
                                         2
                                     </span>
-                                    Husky
-                                </li>
-                                <li>
-                                    <span className="badge badge-pill badge-info">
-                                        2
-                                    </span>
-                                    Prettier
+                                    Eslint/Husky/Prettier
                                 </li>
                                 <li>
                                     <span className="badge badge-pill badge-secondary">
@@ -378,32 +404,20 @@ const About = () => {
                                     React-query
                                 </li>
                                 <li>
-                                    <span className="badge badge-pill badge-primary">
-                                        3
-                                    </span>
-                                    HTML/CSS/JS
-                                </li>
-                                <li>
-                                    <span className="badge badge-pill badge-info">
-                                        2
-                                    </span>
-                                    Next.js
-                                </li>
-                                <li>
                                     <span className="badge badge-pill badge-info">
                                         2
                                     </span>
                                     Recoil
                                 </li>
                                 <li>
-                                    <span className="badge badge-pill badge-info">
-                                        2
+                                    <span className="badge badge-pill badge-primary">
+                                        3
                                     </span>
                                     Typescript
                                 </li>
                                 <li>
-                                    <span className="badge badge-pill badge-info">
-                                        2
+                                    <span className="badge badge-pill badge-primary">
+                                        3
                                     </span>
                                     Emotion.js
                                 </li>
@@ -412,6 +426,12 @@ const About = () => {
                                         1
                                     </span>
                                     Mobx
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Storybook
                                 </li>
                             </ul>
                         </SkillWrap>
@@ -633,6 +653,8 @@ const About = () => {
                                         테마 기반 맛집 큐레이션 서비스
                                     </Title>
                                     <SubTitle>쿠폰빌</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
+
                                     <ul>
                                         <li>
                                             PHP를 이용하여 서비스 구성 -
@@ -654,15 +676,15 @@ const About = () => {
                                             Python을 이용하여 리뷰 분석기 개발
                                         </li>
                                         <li className="example_img">
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/couponvill/1.png"
                                                 alt="couponvill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/couponvill/2.png"
                                                 alt="couponvill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/couponvill/3.png"
                                                 alt="couponvill"
                                             />
@@ -682,6 +704,8 @@ const About = () => {
                                         Duckzill 아이돌 팬 정보 큐레이션 서비스
                                     </Title>
                                     <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
+
                                     <ul>
                                         <li>
                                             팬들이 주최하는 이벤트, 지하철광고
@@ -744,19 +768,19 @@ const About = () => {
                                             </ul>
                                         </li>
                                         <li className="example_img">
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill/1.png"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill/2.png"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill/3.png"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill/4.png"
                                                 alt="duckzill"
                                             />
@@ -772,6 +796,8 @@ const About = () => {
                                 <Content>
                                     <Title>Duckzill Shop 서비스</Title>
                                     <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
+
                                     <ul>
                                         <li>
                                             <strong>
@@ -806,19 +832,19 @@ const About = () => {
                                             외부 데이터 핸들링 백오피스 개발
                                         </li>
                                         <li className="example_img">
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop/1.jpg"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop/2.jpg"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop/3.jpg"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop/4.jpg"
                                                 alt="duckzill"
                                             />
@@ -829,13 +855,16 @@ const About = () => {
                             <hr />
                             <ContentWrap>
                                 <Date>
-                                    <h4 className="gray">2020. 12 ~ 현재</h4>
+                                    <h4 className="gray">
+                                        2021. 12 ~ 2022. 04
+                                    </h4>
                                 </Date>
                                 <Content>
                                     <Title>
                                         Duckzill NFT Project - Backend
                                     </Title>
                                     <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
                                     <ul>
                                         <li>
                                             클레이튼 기반의 NFT 드랍 온,
@@ -902,12 +931,12 @@ const About = () => {
                                 <Content>
                                     <Title>Duckzill Shop 리뉴얼 서비스</Title>
                                     <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
                                     <ul>
                                         <li>
                                             솔루션 의존도를 없애고 확장성을
                                             고려한 자체 이커머스 개발 중
                                         </li>
-                                        <li>프로젝트 총괄</li>
                                         <li>
                                             <strong>Backend</strong>
                                             <ul>
@@ -961,16 +990,183 @@ const About = () => {
                                             </ul>
                                         </li>
                                         <li className="example_img">
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop2/1.png"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop2/2.png"
                                                 alt="duckzill"
                                             />
-                                            <img
+                                            <StyledImage
                                                 src="./images/about/duckzill_shop2/3.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 06 ~ 2022. 07
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>NFT AirDrop Event</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <ul>
+                                        <li>
+                                            Polygon 기반의 NFT Airdrop Event (
+                                            <a
+                                                href="https://opensea.io/collection/duckzill"
+                                                target={'_blank'}
+                                                rel="noreferrer">
+                                                Opensea
+                                            </a>
+                                            ) 구성 컨트렉트 개발 및 Front-end,
+                                            오프라인 이벤트 기획 및 진행
+                                        </li>
+                                        <li>
+                                            LG U+와 협업하여 DIVE에 가상
+                                            전시회를 {`'포토카드룸'`}에서 열고
+                                            해당 프로젝트를 개시
+                                        </li>
+                                        <li>
+                                            <strong>Contract</strong>
+                                            <ul>
+                                                <li>
+                                                    openzeppelin/contracts과
+                                                    hardhat을 사용
+                                                </li>
+                                                <li>
+                                                    Event 특성 상 다양한 이슈에
+                                                    대응 가능한 형태로 개발
+                                                </li>
+                                                <li>
+                                                    오프라인에서 진행할 경우
+                                                    문제에 대비한 Drop Scanner
+                                                    개발
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>
+                                                    Next.js(Static HTML Export)
+                                                </li>
+                                                <li>
+                                                    emotion, i18next(번역), SEO
+                                                    및 PWA 구성
+                                                </li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, S3,
+                                                    CloudFront
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/nft/2.gif"
+                                                alt="duckzill"
+                                                caption="튜토리얼"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/nft/1.png"
+                                                alt="duckzill"
+                                                caption="LG U+의 DIVE"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/nft/3.jpg"
+                                                alt="duckzill"
+                                                caption="오프라인 이벤트(NFT 파트)"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 07 ~ 2022. 08
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>
+                                        NFT AirDrop Event 확장 홀더 이벤트
+                                    </Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <ul>
+                                        <li>
+                                            Polygon 기반의 NFT Airdrop Event (
+                                            <a
+                                                href="https://opensea.io/collection/duckzill"
+                                                target={'_blank'}
+                                                rel="noreferrer">
+                                                Opensea
+                                            </a>
+                                            ) 에 참여한 홀더들에게 선물을 주는
+                                            응모 페이지 개발
+                                        </li>
+                                        <li>
+                                            NFT 특성상 커뮤니티의 영향력이
+                                            중요하기 때문에 NFT의 문화를 위한
+                                            유틸리티 페이지 기획
+                                        </li>
+                                        <li>
+                                            공식 굿즈 선물과 함께 다음에 있을
+                                            오프라인 이벤트에 대한 재참여를
+                                            높히기 위한 장치
+                                        </li>
+                                        <li>
+                                            적은 리소스 대비 효율을 가져가기
+                                            위한 모바일 페이지로만 구성
+                                        </li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>
+                                                    Next.js(Static HTML Export)
+                                                </li>
+                                                <li>emotion</li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, S3,
+                                                    CloudFront
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/nft2/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/nft2/2.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/nft2/3.png"
                                                 alt="duckzill"
                                             />
                                         </li>
@@ -993,7 +1189,7 @@ const About = () => {
                                     <h4 className="gray">2022. 01 ~ 현재</h4>
                                 </Date>
                                 <Content>
-                                    <Title>기술 블로그 운영</Title>
+                                    <Title>기술 블로그 개발 및 운영</Title>
                                     <SubTitle>개인 블로그</SubTitle>
                                     <ul>
                                         <li>
@@ -1010,6 +1206,25 @@ const About = () => {
                                         <li>
                                             사이드 프로젝트 및 개발에 사용하는
                                             프로세스 기록할 예정
+                                        </li>
+                                        <li>
+                                            <b>
+                                                현재는 직접 개발을 하여
+                                                <a
+                                                    href="https://0seo.tistory.com/"
+                                                    target="_blank"
+                                                    rel="noreferrer">
+                                                    &nbsp;tistory&nbsp;
+                                                </a>
+                                                에서
+                                                <a
+                                                    href="https://kooys.github.io/"
+                                                    target="_blank"
+                                                    rel="noreferrer">
+                                                    &nbsp;Github Page&nbsp;
+                                                </a>
+                                                으로 이전 준비 중
+                                            </b>
                                         </li>
                                     </ul>
                                 </Content>
