@@ -1,5 +1,5 @@
 import { MyPage } from '@/@types/next-page';
-import BlogList from '@/containers/BlogList';
+import PostList from '@/containers/PostList';
 import { getAllPosts } from '@/libs/post';
 import styled from '@emotion/styled';
 
@@ -10,7 +10,7 @@ const Wrap = styled.div`
 const Home: MyPage = ({ allPosts }: any) => {
     return (
         <Wrap>
-            <BlogList list={allPosts} />
+            <PostList list={allPosts} />
         </Wrap>
     );
 };

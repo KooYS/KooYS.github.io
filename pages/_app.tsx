@@ -35,8 +35,8 @@ function MyApp({ Component, pageProps }: MyAppProps) {
                 />
             </Head>
             <ThemeProvider theme={theme}>
+                <CssBaseLine />
                 <Layout>
-                    <CssBaseLine />
                     <Component {...pageProps} />
                 </Layout>
             </ThemeProvider>

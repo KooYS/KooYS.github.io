@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { format } from 'date-fns';
 
-export interface Blog {
+export interface PostItem {
     title: string;
     date: string;
     slug: string;
@@ -62,9 +62,9 @@ const StyledShortDescription = styled.div`
 `;
 
 interface Props {
-    item: Blog;
+    item: PostItem;
 }
-const BlogCard: React.FC<Props> = ({ item }) => {
+const PostCard: React.FC<Props> = ({ item }) => {
     return (
         <Wrap href={`/posts/${item.slug}`}>
             <ImageWrap>
@@ -81,4 +81,4 @@ const BlogCard: React.FC<Props> = ({ item }) => {
     );
 };
 
-export default BlogCard;
+export default PostCard;

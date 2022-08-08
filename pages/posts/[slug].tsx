@@ -12,10 +12,35 @@ import rehypeToc, {
     HtmlElementNode,
     ListItemNode,
 } from '@jsdevtools/rehype-toc';
+import SummaryCover from '@/components/PostDetail/SummaryCover';
+import styled from '@emotion/styled';
+import TableOfContents from '@/components/PostDetail/TableOfContents';
 const components = {
     Box: (props: any) => <p {...props} />,
     CodeSandBox: (props: any) => <CodeSandBox {...props} />,
 };
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+const ContentWrap = styled.div`
+    padding-left: calc(min(16px, 8vw));
+    padding-right: calc(min(16px, 8vw));
+    padding-bottom: calc(max(5vh, 32px));
+    margin: 0 auto;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: flex-start;
+    max-width: 720px;
+    flex-direction: column;
+
+    @media only screen and (min-width: 1300px) {
+        flex-direction: row;
+    }
+`;
 
 export default function Post({ post }: any) {
     const router = useRouter();
@@ -25,18 +50,29 @@ export default function Post({ post }: any) {
 
     console.log(post.headings);
     return (
-        <div>
+        <Container>
             {router.isFallback ? (
                 <>isFallback</>
             ) : (
                 <>
-                    <article className="markdown-body">
-                        <MDXRemote {...post.content} components={components} />
-                    </article>
+                    <SummaryCover
+                        title={post?.title}
+                        date={post?.date}
+                        coverImage={post?.coverImage}
+                    />
+                    <ContentWrap>
+                        <article className="markdown-body">
+                            <MDXRemote
+                                {...post.content}
+                                components={components}
+                            />
+                        </article>
+                        <TableOfContents list={post.headings} />
+                    </ContentWrap>
                     <Utterances />
                 </>
             )}
-        </div>
+        </Container>
     );
 }
 
@@ -45,12 +81,11 @@ export async function getStaticProps({ params }: any) {
         'title',
         'date',
         'slug',
-        'author',
         'content',
-        'ogImage',
         'coverImage',
     ]);
-    let headings: HtmlElementNode[] = [];
+    // let headings: HtmlElementNode[] = [];
+    let headings: any[] = [];
     const content = await serialize(post.content || '', {
         mdxOptions: {
             rehypePlugins: [
@@ -65,7 +100,12 @@ export async function getStaticProps({ params }: any) {
                         customizeTOCItem: (
                             tocItem: ListItemNode,
                             heading: HtmlElementNode
-                        ) => headings.push(heading),
+                        ) => {
+                            headings.push({
+                                heading: heading,
+                            });
+                            return true;
+                        },
                     },
                 ],
             ],

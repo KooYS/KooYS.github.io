@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import BlogCard, { Blog } from '@/components/BlogCard';
+import PostCard, { PostItem } from '@/components/PostCard';
 
 interface Props {
-    list: Blog[];
+    list: PostItem[];
 }
 
 const Container = styled.div``;
@@ -18,16 +18,16 @@ const BlogListWrap = styled.div`
     width: 100%;
 `;
 
-const BlogList: React.FC<Props> = ({ list }) => {
+const PostList: React.FC<Props> = ({ list }) => {
     return (
         <Container>
             <BlogListWrap>
                 {list.map((el, index) => {
-                    return <BlogCard key={index} item={el} />;
+                    return <PostCard key={index} item={el} />;
                 })}
             </BlogListWrap>
         </Container>
     );
 };
 
-export default BlogList;
+export default PostList;

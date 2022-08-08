@@ -1,9 +1,13 @@
+import styled from '@emotion/styled';
 import React from 'react';
 
+const StyledsSection = styled.section`
+    width: 100%;
+`;
 const Utterances = () => {
     return (
         <>
-            <section
+            <StyledsSection
                 className="utteranc-light"
                 ref={(elem) => {
                     if (!elem) {
@@ -20,7 +24,7 @@ const Utterances = () => {
                     elem.appendChild(scriptElem);
                 }}
             />
-            <section
+            <StyledsSection
                 className="utteranc-dark"
                 ref={(elem) => {
                     if (!elem) {
