@@ -8,6 +8,17 @@ const Container = styled.div`
     word-break: keep-all;
     line-height: 1.8;
 
+    padding-left: calc(min(16px, 8vw));
+    padding-right: calc(min(16px, 8vw));
+    padding-bottom: calc(max(5vh, 32px));
+    margin: 0 auto;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: flex-start;
+    max-width: 720px;
+    flex-direction: column;
+
     & a {
         color: #007bff;
         text-decoration: none;
@@ -98,6 +109,7 @@ const Container = styled.div`
 const Row = styled.div`
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 `;
 
 const Col = styled.div`
