@@ -12,6 +12,7 @@ import rehypeToc, {
     HtmlElementNode,
     ListItemNode,
 } from '@jsdevtools/rehype-toc';
+
 import SummaryCover from '@/components/PostDetail/SummaryCover';
 import styled from '@emotion/styled';
 import TableOfContents from '@/components/PostDetail/TableOfContents';
@@ -21,11 +22,6 @@ const components = {
 };
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-const ContentWrap = styled.div`
     padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
     padding-bottom: calc(max(5vh, 32px));
@@ -37,20 +33,37 @@ const ContentWrap = styled.div`
     max-width: 720px;
     flex-direction: column;
 
+    h1 {
+        scroll-margin-top: 60px;
+    }
+    h2 {
+        scroll-margin-top: 54px;
+    }
+`;
+
+const ContentWrap = styled.main`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
     @media only screen and (min-width: 1300px) {
         flex-direction: row;
+        width: calc((100vw + 720px) / 2);
+        & article {
+            width: 720px;
+            max-width: 720px;
+        }
     }
 `;
 
 export default function Post({ post }: any) {
     const router = useRouter();
+
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404} />;
     }
-
-    console.log(post.headings);
     return (
-        <Container>
+        <>
             {router.isFallback ? (
                 <>isFallback</>
             ) : (
@@ -60,19 +73,21 @@ export default function Post({ post }: any) {
                         date={post?.date}
                         coverImage={post?.coverImage}
                     />
-                    <ContentWrap>
-                        <article className="markdown-body">
-                            <MDXRemote
-                                {...post.content}
-                                components={components}
-                            />
-                        </article>
-                        <TableOfContents list={post.headings} />
-                    </ContentWrap>
+                    <Container>
+                        <ContentWrap>
+                            <article className="markdown-body">
+                                <MDXRemote
+                                    {...post.content}
+                                    components={components}
+                                />
+                            </article>
+                            <TableOfContents list={post.headings} />
+                        </ContentWrap>
+                    </Container>
                     <Utterances />
                 </>
             )}
-        </Container>
+        </>
     );
 }
 
@@ -84,8 +99,7 @@ export async function getStaticProps({ params }: any) {
         'content',
         'coverImage',
     ]);
-    // let headings: HtmlElementNode[] = [];
-    let headings: any[] = [];
+    let headings: HtmlElementNode[] = [];
     const content = await serialize(post.content || '', {
         mdxOptions: {
             rehypePlugins: [
@@ -101,9 +115,7 @@ export async function getStaticProps({ params }: any) {
                             tocItem: ListItemNode,
                             heading: HtmlElementNode
                         ) => {
-                            headings.push({
-                                heading: heading,
-                            });
+                            headings.push(heading);
                             return true;
                         },
                     },

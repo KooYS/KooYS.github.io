@@ -8,7 +8,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-const ContentWrap = styled.main`
+const ContentWrap = styled.div`
     /* padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
     padding-bottom: calc(max(5vh, 32px));

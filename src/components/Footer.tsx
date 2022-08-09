@@ -34,11 +34,17 @@ const Social = styled.div`
         justify-content: center;
     }
 `;
+
+const StyledDarkModeButton = styled(DarkModeButton)`
+    &:hover {
+        color: var(--color-border-default);
+    }
+`;
 const Footer = () => {
     return (
         <StyledFooter>
             <Copyright>Copyright 2022 KooYS</Copyright>
-            <DarkModeButton />
+            <StyledDarkModeButton />
             <Social>
                 <a
                     href="https://github.com/KooYS"

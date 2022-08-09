@@ -5,6 +5,16 @@ import styled from '@emotion/styled';
 
 const Wrap = styled.div`
     width: 100%;
+    padding-left: calc(min(16px, 8vw));
+    padding-right: calc(min(16px, 8vw));
+    padding-bottom: calc(max(3vh, 20px));
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: flex-start;
+    max-width: 720px;
 `;
 
 const Home: MyPage = ({ allPosts }: any) => {

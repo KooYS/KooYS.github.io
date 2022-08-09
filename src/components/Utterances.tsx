@@ -3,6 +3,7 @@ import React from 'react';
 
 const StyledsSection = styled.section`
     width: 100%;
+    height: 760px;
 `;
 const Utterances = () => {
     return (

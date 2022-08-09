@@ -5,14 +5,12 @@ import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
     size?: string;
+    classNmae?: string;
 }
 const StyledButton = styled.a<Props>`
     font-size: ${({ size }) => (size ? size : '30px')};
     display: flex;
     align-items: center;
-    &:hover {
-        color: var(--color-border-default);
-    }
 `;
 
 const StyledBsMoonFill = styled(BsMoonFill)`
@@ -39,13 +37,13 @@ const StyledBsSunFill = styled(BsSunFill)`
     }
 `;
 
-const DarkModeButton: React.FC<Props> = ({ size }) => {
+const DarkModeButton: React.FC<Props> = ({ size, ...rest }) => {
     const { toggle } = useDarkMode();
 
     return (
         <>
             {
-                <StyledButton size={size} onClick={toggle}>
+                <StyledButton {...rest} size={size} onClick={toggle}>
                     <StyledBsMoonFill />
                     <StyledBsSunFill />
                 </StyledButton>
