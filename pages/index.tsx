@@ -4,7 +4,6 @@ import { getAllPosts } from '@/libs/post';
 import styled from '@emotion/styled';
 
 const Wrap = styled.div`
-    width: 100%;
     padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
     padding-bottom: calc(max(3vh, 20px));

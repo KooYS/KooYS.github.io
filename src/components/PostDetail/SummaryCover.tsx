@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { format } from 'date-fns';
-
+import { ko } from 'date-fns/locale';
 const StyledWrap = styled.div`
     width: 100%;
 `;
@@ -49,7 +49,7 @@ const StyledImageWrap = styled.div`
         max-width: 100%;
         min-height: 100%;
         max-height: 100%;
-        object-position: center 16.44%;
+        /* object-position: center 16.44%; */
         object-fit: cover;
     }
 `;
@@ -105,7 +105,9 @@ const SummaryCover: React.FC<Props> = ({ title, date, coverImage }) => {
             <StyledInfoWrap>
                 <StyledTitle>{title}</StyledTitle>
                 <StyledDate>
-                    {format(new Date(date), 'yyyy-dd-MM HH:mm:ss')}
+                    {format(new Date(date), 'yyyy-MM-dd HH:mm:ss', {
+                        locale: ko,
+                    })}
                 </StyledDate>
             </StyledInfoWrap>
             <StyledHr />

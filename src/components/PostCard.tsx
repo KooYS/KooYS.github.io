@@ -25,6 +25,7 @@ const ImageWrap = styled.div`
         border-radius: 15px;
         object-fit: cover;
         object-position: center 10%;
+        aspect-ratio: 3/2;
     }
     .light & img {
         border: 1px solid #f0f0f0;
