@@ -16,6 +16,7 @@ import rehypeToc, {
 import SummaryCover from '@/components/PostDetail/SummaryCover';
 import styled from '@emotion/styled';
 import TableOfContents from '@/components/PostDetail/TableOfContents';
+import { NextSeo } from 'next-seo';
 const components = {
     Box: (props: any) => <p {...props} />,
     CodeSandBox: (props: any) => <CodeSandBox {...props} />,
@@ -64,6 +65,19 @@ export default function Post({ post }: any) {
     }
     return (
         <>
+            <NextSeo
+                title={post?.title}
+                description={post?.excerpt}
+                openGraph={{
+                    title: post?.title,
+                    description: post?.excerpt,
+                    images: [
+                        {
+                            url: post?.coverImage,
+                        },
+                    ],
+                }}
+            />
             {router.isFallback ? (
                 <>isFallback</>
             ) : (
@@ -96,6 +110,7 @@ export async function getStaticProps({ params }: any) {
         'title',
         'date',
         'slug',
+        'excerpt',
         'content',
         'coverImage',
     ]);
