@@ -4,8 +4,8 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import { getAllPosts, getPostBySlug } from '@/libs/post';
 import rehypeHighlight from 'rehype-highlight';
-import Utterances from '@/components/Utterances';
-import CodeSandBox from '@/components/CodeSandBox';
+import Utterances from '@/components/Post/Utterances';
+import CodeSandBox from '@/components/Post/CodeSandBox';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeToc, {
@@ -13,9 +13,9 @@ import rehypeToc, {
     ListItemNode,
 } from '@jsdevtools/rehype-toc';
 
-import SummaryCover from '@/components/PostDetail/SummaryCover';
+import SummaryCover from '@/components/Post/PostDetail/SummaryCover';
 import styled from '@emotion/styled';
-import TableOfContents from '@/components/PostDetail/TableOfContents';
+import TableOfContents from '@/components/Post/PostDetail/TableOfContents';
 import { NextSeo } from 'next-seo';
 const components = {
     Box: (props: any) => <p {...props} />,

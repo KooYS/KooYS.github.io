@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import PostCard, { PostItem } from '@/components/PostCard';
+import PostCard, { PostItem } from '@/components/Post/PostCard';
+import LinkPreview from '@/components/Post/LinkPreview';
 
 interface Props {
     list: PostItem[];
@@ -21,6 +22,7 @@ const BlogListWrap = styled.div`
 const PostList: React.FC<Props> = ({ list }) => {
     return (
         <Container>
+            <LinkPreview />
             <BlogListWrap>
                 {list.map((el, index) => {
                     return <PostCard key={index} item={el} />;
