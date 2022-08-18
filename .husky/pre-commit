@@ -4,4 +4,4 @@
 
 
 npx lint-staged
-yarn export
+yarn build

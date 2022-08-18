@@ -1,39 +1,129 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-const LinkPreview = () => {
-    const fetch = async (link: string) => {
-        return await axios.get(link);
-    };
-    const parse = (html: string) => {
-        const properties = ['title', 'description', 'image', 'url'];
-        const meta: any = {};
-        const cheerio = require('cheerio');
-        const $ = cheerio.load(html);
-        properties.forEach((p) => {
-            const content = $(`meta[property="og:${p}"]`).attr('content');
-            if (content) {
-                meta[p] = content;
-            }
-        });
-        return meta;
+import styled from '@emotion/styled';
+
+interface Props {
+    href: string;
+}
+
+interface Metadata {
+    title: string;
+    description: string;
+    image: string;
+    url: string;
+}
+
+const Container = styled.a`
+    width: 100%;
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    height: 200px;
+    border: 1px solid var(--color-border-default);
+    text-decoration: none;
+    z-index: 1;
+    margin-top: 30px;
+    margin-bottom: 30px;
+`;
+
+const ImageWrap = styled.div`
+    aspect-ratio: 1;
+    width: 200px;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+`;
+const ContentWrap = styled.div`
+    position: absolute;
+    left: 201px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 33px 46px 0 39px;
+`;
+const Title = styled.div`
+    color: var(--color-fg-default);
+    font-size: 22px;
+    line-height: 28px;
+    max-width: 467px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 0 10px 0 !important;
+    overflow: hidden;
+`;
+const Description = styled.div`
+    margin: 0px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--color-fg-subtle);
+    max-height: 42px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+`;
+
+const Url = styled.div`
+    position: absolute;
+    bottom: 24px;
+    font-family: AvenirNext, sans-serif;
+    font-size: 14px;
+    color: var(--color-fg-subtle);
+    margin: 0;
+`;
+const LinkPreview: React.FC<Props> = ({ href }) => {
+    const [metaData, setMetaData] = useState<Metadata | null>(null);
+    const isFetch = useRef<boolean>(false);
+    const fetchMeatData = async (link: string) => {
+        if (link.startsWith('http'))
+            return await axios.get('/link/' + link.split('://')[1]);
+        else return await axios.get('/link/' + link);
     };
 
     const getMetaTags = async (link: string) => {
         try {
-            const { data } = await fetch(link);
-            const meta = await parse(data);
-            console.log(meta);
+            const { data } = await fetchMeatData(link);
+            setMetaData(data);
         } catch (e) {
             console.log(e);
         }
     };
 
     useEffect(() => {
-        getMetaTags(
-            'https://0seo.tistory.com/manage/newpost/9?type=post&returnURL=https%3A%2F%2F0seo.tistory.com%2F9'
-        );
-    }, []);
-    return <></>;
+        if (!metaData && !isFetch.current) {
+            getMetaTags(href);
+            isFetch.current = true;
+        } else {
+            console.log(metaData);
+        }
+    }, [metaData]);
+    return (
+        <>
+            {metaData && (
+                <Container href={metaData.url} target="_blank">
+                    <ImageWrap>
+                        <img src={metaData.image} alt={metaData.title} />
+                    </ImageWrap>
+
+                    <ContentWrap>
+                        <Title>{metaData.title}</Title>
+                        <Description>{metaData.description}</Description>
+                        <Url>{new URL(metaData.url).hostname}</Url>
+                    </ContentWrap>
+                </Container>
+            )}
+        </>
+    );
 };
 
 export default LinkPreview;

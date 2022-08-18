@@ -17,9 +17,11 @@ import SummaryCover from '@/components/Post/PostDetail/SummaryCover';
 import styled from '@emotion/styled';
 import TableOfContents from '@/components/Post/PostDetail/TableOfContents';
 import { NextSeo } from 'next-seo';
+import LinkPreview from '@/components/Post/LinkPreview';
 const components = {
     Box: (props: any) => <p {...props} />,
     CodeSandBox: (props: any) => <CodeSandBox {...props} />,
+    LinkPreview: (props: any) => <LinkPreview {...props} />,
 };
 
 const Container = styled.div`
