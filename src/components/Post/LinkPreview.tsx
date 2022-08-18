@@ -18,8 +18,10 @@ const Container = styled.a`
     display: flex;
     position: relative;
     box-sizing: border-box;
-    display: block;
     height: 200px;
+    ${(props) => props.theme.mq.mobile} {
+        height: 100px;
+    }
     border: 1px solid var(--color-border-default);
     text-decoration: none;
     z-index: 1;
@@ -30,6 +32,10 @@ const Container = styled.a`
 const ImageWrap = styled.div`
     aspect-ratio: 1;
     width: 200px;
+
+    ${(props) => props.theme.mq.mobile} {
+        width: 100px;
+    }
 
     & img {
         width: 100%;
@@ -45,6 +51,11 @@ const ContentWrap = styled.div`
     bottom: 0;
     box-sizing: border-box;
     padding: 33px 46px 0 39px;
+
+    ${(props) => props.theme.mq.mobile} {
+        left: 100px;
+        padding: 13px 12px 0 20px;
+    }
 `;
 const Title = styled.div`
     color: var(--color-fg-default);
@@ -55,6 +66,11 @@ const Title = styled.div`
     white-space: nowrap;
     margin: 0 0 10px 0 !important;
     overflow: hidden;
+
+    ${(props) => props.theme.mq.mobile} {
+        font-size: 16px;
+        -webkit-line-clamp: 1;
+    }
 `;
 const Description = styled.div`
     margin: 0px;
@@ -71,6 +87,10 @@ const Description = styled.div`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
+
+    ${(props) => props.theme.mq.mobile} {
+        display: none;
+    }
 `;
 
 const Url = styled.div`
@@ -80,6 +100,10 @@ const Url = styled.div`
     font-size: 14px;
     color: var(--color-fg-subtle);
     margin: 0;
+
+    ${(props) => props.theme.mq.mobile} {
+        bottom: 10px;
+    }
 `;
 const LinkPreview: React.FC<Props> = ({ href }) => {
     const [metaData, setMetaData] = useState<Metadata | null>(null);
