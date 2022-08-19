@@ -18,9 +18,17 @@ const BlogListWrap = styled.div`
     width: 100%;
 `;
 
+const StyledHr = styled.hr`
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 50px;
+`;
+
 const PostList: React.FC<Props> = ({ list }) => {
     return (
         <Container>
+            <h2>Posts</h2>
+            <StyledHr />
             <BlogListWrap>
                 {list.map((el, index) => {
                     return <PostCard key={index} item={el} />;

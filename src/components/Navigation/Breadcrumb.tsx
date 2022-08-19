@@ -28,9 +28,9 @@ const Breadcrumb = () => {
             <Link href="/about">
                 <a>About</a>
             </Link>
-            <Link href="/contact">
+            {/* <Link href="/contact">
                 <a>Contact</a>
-            </Link>
+            </Link> */}
             <StyledDarkModeButton size="15px" />
         </BreadcrumbsWrap>
     );

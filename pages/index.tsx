@@ -2,7 +2,7 @@ import { MyPage } from '@/@types/next-page';
 import PostList from '@/containers/PostList';
 import { getAllPosts } from '@/libs/post';
 import styled from '@emotion/styled';
-
+import SummaryCover from '@/components/Main/SummaryCover';
 const Wrap = styled.div`
     padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
@@ -17,10 +17,20 @@ const Wrap = styled.div`
 `;
 
 const Home: MyPage = ({ allPosts }: any) => {
+    const summary = {
+        title: 'BloKoo',
+        date: '',
+        coverImage: './images/main/bg.jpg',
+        avatar: 'https://avatars.githubusercontent.com/u/17160263?v=4',
+    };
+
     return (
-        <Wrap>
-            <PostList list={allPosts} />
-        </Wrap>
+        <>
+            <SummaryCover {...summary} />
+            <Wrap>
+                <PostList list={allPosts} />
+            </Wrap>
+        </>
     );
 };
 
