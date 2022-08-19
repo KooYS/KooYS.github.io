@@ -134,15 +134,20 @@ const LinkPreview: React.FC<Props> = ({ href }) => {
     return (
         <>
             {metaData && (
-                <Container href={metaData.url} target="_blank">
-                    <ImageWrap>
-                        <img src={metaData.image} alt={metaData.title} />
-                    </ImageWrap>
+                <Container href={href} target="_blank">
+                    {metaData.image && (
+                        <ImageWrap>
+                            <img src={metaData.image} alt={metaData.title} />
+                        </ImageWrap>
+                    )}
 
-                    <ContentWrap>
+                    <ContentWrap
+                        style={
+                            !metaData.image ? { left: 0, maxWidth: '100%' } : {}
+                        }>
                         <Title>{metaData.title}</Title>
                         <Description>{metaData.description}</Description>
-                        <Url>{new URL(metaData.url).hostname}</Url>
+                        {href && <Url>{new URL(href).hostname}</Url>}
                     </ContentWrap>
                 </Container>
             )}

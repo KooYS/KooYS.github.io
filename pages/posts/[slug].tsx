@@ -5,7 +5,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { getAllPosts, getPostBySlug } from '@/libs/post';
 import rehypeHighlight from 'rehype-highlight';
 import Utterances from '@/components/Post/Utterances';
-import CodeSandBox from '@/components/Post/CodeSandBox';
+import CodeSandBox from '@/components/Post/Mdx/CodeSandBox';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeToc, {
@@ -17,12 +17,9 @@ import SummaryCover from '@/components/Post/PostDetail/SummaryCover';
 import styled from '@emotion/styled';
 import TableOfContents from '@/components/Post/PostDetail/TableOfContents';
 import { NextSeo } from 'next-seo';
-import LinkPreview from '@/components/Post/LinkPreview';
-const components = {
-    Box: (props: any) => <p {...props} />,
-    CodeSandBox: (props: any) => <CodeSandBox {...props} />,
-    LinkPreview: (props: any) => <LinkPreview {...props} />,
-};
+import LinkPreview from '@/components/Post/Mdx/LinkPreview';
+import ImageForMdx from '@/components/Post/Mdx/Image';
+import { useMemo } from 'react';
 
 const Container = styled.div`
     padding-left: calc(min(16px, 8vw));
@@ -61,6 +58,18 @@ const ContentWrap = styled.main`
 
 export default function Post({ post }: any) {
     const router = useRouter();
+
+    const components = useMemo(
+        () => ({
+            Box: (props: any) => <p {...props} />,
+            CodeSandBox: (props: any) => <CodeSandBox {...props} />,
+            LinkPreview: (props: any) => <LinkPreview {...props} />,
+            Img: (props: any) => (
+                <ImageForMdx path={`../images/post/${post.slug}/`} {...props} />
+            ),
+        }),
+        [post]
+    );
 
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404} />;

@@ -6,33 +6,43 @@ interface Data {
     title: string;
     description: string;
     image: string;
-    url: string;
 }
 const htmlFetch = async (link: string) => {
     return await axios.get(link);
 };
 
 const parse = (html: string) => {
-    const properties: ('title' | 'description' | 'image' | 'url')[] = [
+    const properties: ('title' | 'description' | 'image')[] = [
         'title',
         'description',
         'image',
-        'url',
     ];
     const meta: Data = {
         title: '',
         description: '',
         image: '',
-        url: '',
     };
     const cheerio = require('cheerio');
     const $ = cheerio.load(html);
     properties.forEach((p) => {
-        const content = $(`meta[property="og:${p}"]`).attr('content');
+        let content = undefined;
+        switch (p) {
+            case 'title':
+                content = $(`title`).text();
+                break;
+            case 'description':
+                content = $(`meta[name="description"]`).attr('content');
+                break;
+            default:
+                content = $(`meta[property="og:${p}"]`).attr('content');
+                break;
+        }
+
         if (content) {
             meta[p] = content;
         }
     });
+
     return meta;
 };
 
@@ -46,7 +56,6 @@ const getMetaTags = async (link: string): Promise<Data> => {
             title: '',
             description: '',
             image: '',
-            url: '',
         };
     }
 };

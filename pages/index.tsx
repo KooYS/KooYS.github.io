@@ -44,7 +44,8 @@ export const getStaticProps = async () => {
         'author',
         'coverImage',
         'excerpt',
-    ]);
+        'status',
+    ]).filter((e) => e.status === undefined || e.status !== 'pending');
 
     return {
         props: { allPosts },

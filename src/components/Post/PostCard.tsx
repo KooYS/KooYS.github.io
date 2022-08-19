@@ -74,9 +74,11 @@ const PostCard: React.FC<Props> = ({ item }) => {
             <ContentBody>
                 <StyledTitle>{item.title}</StyledTitle>
                 <StyledShortDescription>{item.excerpt}</StyledShortDescription>
-                <StyledDate>
-                    {format(new Date(item.date), 'yyyy-dd-MM')}
-                </StyledDate>
+                {item.date && (
+                    <StyledDate>
+                        {format(new Date(item.date), 'yyyy-dd-MM')}
+                    </StyledDate>
+                )}
             </ContentBody>
         </Wrap>
     );
