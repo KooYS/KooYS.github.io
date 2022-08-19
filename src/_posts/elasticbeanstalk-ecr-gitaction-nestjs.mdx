@@ -290,3 +290,36 @@ Application LB를 사용하고 https를 사용하고자 한다면 리스너에 S
 
 
 ## 5. Github action에서 사용할 IAM 만들기
+
+
+aws console에서 IAM에 들어가 사용자 추가.
+
+아래의 3가지 정책을 추가하여 사용자를 만든다.
+
+\- AmazonEC2ContainerRegistryFullAccess \
+\- AmazonECS_FullAccess \
+\- AdministratorAccess-AWSElasticBeanstalk
+
+<Img src="21.png"/>
+
+
+여기에서 `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` 까지 준비 끝.
+
+
+## 6. 배포
+
+현재 배포가 되어있어서 재배포를 하여 테스트 해본다. 현재 환경에서 제공하는 url을 누르면 data가 test로 나옵니다. 이를 hello로 변경해보도록 한다.
+
+<Img size={80} src="22.png"/>
+
+코드를 변경하고 trigger branch에 push.
+
+<Img size={100} src="23.png" caption="github action의 process" />
+
+<Img size={100} src="24.png"/>
+
+새로고침을 하면서 체크해보면 이전 배포의 `data : test`와 새로운 배포의 `data : Hello`가 번갈아가면서 나오면서 정상적으로 배포가 완료되면서 예전 인스턴스는 종료가 되면서 무중단 배포가 이뤄진다.!!!!
+
+<Img size={100} src="25.png"/>
+
+### 끝!!
