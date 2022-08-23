@@ -66,6 +66,7 @@ interface Props {
     item: PostItem;
 }
 const PostCard: React.FC<Props> = ({ item }) => {
+    // alert(item.date);
     return (
         <Wrap href={`/posts/${item.slug}`}>
             <ImageWrap>
@@ -76,7 +77,7 @@ const PostCard: React.FC<Props> = ({ item }) => {
                 <StyledShortDescription>{item.excerpt}</StyledShortDescription>
                 {item.date && (
                     <StyledDate>
-                        {format(new Date(item.date), 'yyyy-dd-MM')}
+                        {format(new Date(item.date), 'yyyy-MM-dd')}
                     </StyledDate>
                 )}
             </ContentBody>

@@ -22,6 +22,10 @@ import ImageForMdx from '@/components/Post/Mdx/Image';
 import { useMemo } from 'react';
 
 const Container = styled.div`
+    max-width: 100%;
+    overflow-x: hidden;
+`;
+const ContentContainer = styled.div`
     padding-left: calc(min(16px, 8vw));
     padding-right: calc(min(16px, 8vw));
     padding-bottom: calc(max(5vh, 32px));
@@ -75,7 +79,7 @@ export default function Post({ post }: any) {
         return <ErrorPage statusCode={404} />;
     }
     return (
-        <>
+        <Container>
             <NextSeo
                 title={post?.title}
                 description={post?.excerpt}
@@ -98,7 +102,7 @@ export default function Post({ post }: any) {
                         date={post?.date}
                         coverImage={post?.coverImage}
                     />
-                    <Container>
+                    <ContentContainer>
                         <ContentWrap>
                             <article className="markdown-body">
                                 <MDXRemote
@@ -108,11 +112,11 @@ export default function Post({ post }: any) {
                             </article>
                             <TableOfContents list={post.headings} />
                         </ContentWrap>
-                    </Container>
+                    </ContentContainer>
                     <Utterances />
                 </>
             )}
-        </>
+        </Container>
     );
 }
 

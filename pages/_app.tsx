@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
                     description: Component.description,
                     images: [
                         {
-                            url: 'og.png',
+                            url: '/images/og.png',
                             width: 1200,
                             height: 630,
                             alt: 'BloKoo',
