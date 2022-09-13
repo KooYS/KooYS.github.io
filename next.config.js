@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    swcMinify: true,
     reactStrictMode: true,
     compiler: {
         emotion: true,
     },
-
     async rewrites() {
         return [
             {
