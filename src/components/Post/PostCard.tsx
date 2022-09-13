@@ -68,7 +68,7 @@ interface Props {
 const PostCard: React.FC<Props> = ({ item }) => {
     // alert(item.date);
     return (
-        <Wrap href={`/posts/${item.slug}`}>
+        <Wrap href={`/posts/${item.slug.toLowerCase()}`}>
             <ImageWrap>
                 <img src={item.coverImage} alt={item.slug} />
             </ImageWrap>
