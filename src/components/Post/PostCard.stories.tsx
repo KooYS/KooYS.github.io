@@ -8,7 +8,7 @@ const BlogListWrap = styled.div`
     ${(props) => props.theme.mq.mobile} {
         grid-template-columns: repeat(1, 1fr);
     }
-    row-gap: 50px;
+    row-gap: 80px;
     column-gap: 20px;
     width: 100%;
 `;

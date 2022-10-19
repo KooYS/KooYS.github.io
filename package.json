@@ -10,7 +10,8 @@
     "precommit": "lint-staged",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=30e2de60e815"
   },
   "dependencies": {
     "@emotion/css": "^11.9.0",
@@ -50,6 +51,7 @@
     "@types/react-dom": "18.0.5",
     "@types/react-syntax-highlighter": "^15.5.4",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.10.4",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "^8.5.0",
@@ -67,5 +69,8 @@
       "eslint --fix",
       "prettier --write"
     ]
-  }
+  },
+  "name": "",
+  "readme": "ERROR: No README data found!",
+  "_id": "@0.1.0"
 }
