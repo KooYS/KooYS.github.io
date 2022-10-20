@@ -3,8 +3,8 @@ import { Html, Head, Main, NextScript } from 'next/document';
 export default function Document() {
     const setDarkMode = `
     function setDarkMode() {
-        const theme = window.localStorage.getItem('dark-mode')
-        if(theme){
+        const theme = localStorage['dark-mode']
+        if(theme === "true" || (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ){
             document.body.classList.add('dark');
             document.body.classList.remove('light');
         }
