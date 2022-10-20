@@ -13,7 +13,7 @@ const StyledButton = styled.a<Props>`
     align-items: center;
 `;
 
-const StyledBsMoonFill = styled(BsMoonFill)`
+const StyledBsMoonFill = styled(BsSunFill)`
     & {
         display: none;
     }
@@ -25,7 +25,7 @@ const StyledBsMoonFill = styled(BsMoonFill)`
     }
 `;
 
-const StyledBsSunFill = styled(BsSunFill)`
+const StyledBsSunFill = styled(BsMoonFill)`
     & {
         display: none;
     }
