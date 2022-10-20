@@ -1,0 +1,135 @@
+---
+title: 'Lambda 와 Api Gateway를 사용하여 간단한 Rest Api 만들기'
+excerpt: '간단한 프로젝트를 만들 때 msw를 사용하여 러프하게라도 구성을 한다. 근데 이제 실서버에 배포를 하고자 한다면 백엔드를 고려하게 되는데 단순한 REST API를 만든다면 번거롭게 백엔드를 구성하여 배포하지 않고 만들 수 있는 방법들이 여럿 있다. 그 중에 AWS의 서비스들을 이용하여 간단한 REST API를 만들어보고자 한다.'
+coverImage: '/images/post/restapi-with-lambda-api-gateway/cover.png'
+date: '2022-10-20T11:20:00'
+---
+
+
+
+# Lambda 와 Api Gateway를 사용하여 간단한 Rest Api 만들기
+
+## Lambda 만들기
+
+먼저 [ 함수 생성 ]으로 함수를 만든다.  
+
+아래의 이미지처럼 런타임 환경은 글 작성 기준에서는 Node.js 16.X 이며  함수 이름은 사용할 이름을 적고 함수 생성을 해준다.
+
+<Img size={100} src="1.png"/>
+
+생성이 된 후에 Api를 호출하는 작업을 하기 위해서 이 글에서는 axios 를 사용하려고 한다. 그래서 추후에도 사용을 고려하여 layer를 만든다.
+
+아래 이미지 처럼 계층 혹은 Layers로 되어있을 것이다.
+
+<Img size={100} src="2.png"/>
+
+폴더를 아무거나 만들어서 
+
+```
+
+# 첫 번째
+mkdir nodejs
+cd nodejs
+
+# 두 번째
+npm install axios
+
+# 세 번째
+cd ..
+zip -r axios.zip nodejs
+```
+
+<Img size={100} src="3.png"/>
+ 
+만든 압축파일(axios.zip)을 업로드한다. 생성 후에 
+
+<Img size={100} src="4.png"/>
+
+버전 ARN을 복사한다.
+
+
+그 후에 만든 Lambda에 들어가서 계층영역에서 layer를 추가한다.
+<Img size={100} src="5.png"/>
+<Img size={100} src="6.png"/>
+ARN 지정을 눌러 방금 복사한 버전 ARN을 붙여넣고 추가 버튼을 누른다.
+
+만든 Lambda 함수의 중간 코드 소스 영역을 이제 수정한다.
+(아래의 이미지는 기본으로 만들 때 추가되어있는 소스)
+<Img size={100} src="7.png"/>
+
+```
+'use strict';
+const axios = require("axios")
+
+const axiosInstance = axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com',
+    headers: {
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8'
+    },
+});
+    
+exports.handler = async (event) => {
+    const response = await axiosInstance.get(`/posts`);
+    return {
+     		statusCode: 200,
+    		body : response.data
+    };
+};
+```
+
+[JSONPlaceholder - Free Fake REST API](https://jsonplaceholder.typicode.com/) 여기에서 /posts를 사용했다.
+
+<Img size={100} src="8.png"/>
+결과는 성공적이다. 이제 Lambda와 Api Gateway를 연결해보겠다.
+
+
+## API Gateway 만들기
+API 생성을 클릭하고 유형 선택에서 [REST API] 구축을 클릭 한다. 
+<Img size={100} src="9.png"/>
+
+입맛대로 선택 후 생성!
+<Img size={100} src="10.png"/>
+
+잘 만들어졌다. 이제 여기에서 입맛대로 만들어 나가면 된다. 위에서 만든 fake api를 쓴다는 가정하에 같은 경로로 만들어 보려고 한다.
+<Img size={100} src="11.png"/>
+
+리소스 이름과 경로를 posts로 작성하고 리소스 생성을 클릭하면 리소스 탭에 / 하위에 /posts가 생긴걸 확인할 수 있다. 이제 여기에 메소드를 만든다. lambda에서 호출하는 fake api는  get 이었기 때문에 여기도 마찬가지로 get을 만든다.
+
+
+Lambda 함수를 사용할 예정이므로 통합 유형은 그대로 두고 하단부의 리전과 함수명을 설정한다. 
+<Img size={100} src="12.png"/>
+
+여기에서 작업할 부분이  `메서드 요청`과 `통합 요청` 이다.
+<Img size={100} src="13.png"/>
+
+`메서드 요청`에서 요청 본문을 열어서 빨간 박스 영역을 추가한다.
+<Img size={100} src="14.png"/>
+
+`통합 요청`에서 매핑 템플릿을 열어서 빨간 박스 영역을 추가한다.
+
+<Img size={100} src="15.png"/>
+
+ Content-Type을 설정하면 자동으로 아래의 이미지 처럼 템플릿 생성란 영역이 생기며 셀렉 박스가 뜬다. 이 때 메서드 요청 패스스루를 누르면 자동으로 템플릿이 생성되는데 아무것도 수정하지말고 저장을 눌러주면 된다.
+<Img size={100} src="16.png"/>
+
+
+
+
+이제 이 리소스를 API 배포를 한다.
+<Img size={100} src="17.png"/>
+<Img size={100} src="18.png"/>
+
+배포를 누르면 끝!
+
+스테이지에 방금 만든 v0의 api가 만들어졌고 만들어진 리소스를 누르면 URL 호출 링크를 확인할 수 있다.
+<Img size={100} src="19.png"/>
+
+클릭해보면 아까 Lambda에서 본 결과를 확인할 수 있다. 
+<Img size={100} src="20.png"/>
+
+이제 Lambda에서 RDS 혹은 외부 API를 호출하여 데이터를 전달하여 API Gateway를 통해 Rest API를 구현할 수 있다.
+
+
+### 끝
+

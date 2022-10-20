@@ -26,7 +26,7 @@ const Breadcrumb = () => {
     return (
         <BreadcrumbsWrap>
             <Link href="/about">
-                <a>About</a>
+                <a>About Me</a>
             </Link>
             {/* <Link href="/contact">
                 <a>Contact</a>

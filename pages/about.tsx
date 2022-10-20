@@ -1185,6 +1185,70 @@ const About = () => {
                                     </ul>
                                 </Content>
                             </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 09 ~ 2022. 10
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>
+                                        Festa for Army(부산 이벤트 맵)
+                                    </Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>Next.js</li>
+                                                <li>Typescript</li>
+                                                <li>emotion</li>
+                                                <li>next-auth</li>
+                                                <li>msw</li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>AWS Lambda</li>
+                                                <li>AWS API Gateway</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, Beanstalk,
+                                                    ECR, Docker
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/map/1.gif"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/map/2.gif"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/map/3.gif"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
                         </div>
                     </Col>
                 </Row>
