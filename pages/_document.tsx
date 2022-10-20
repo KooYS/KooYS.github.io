@@ -1,6 +1,21 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
+    const setDarkMode = `
+    function setDarkMode() {
+        const theme = window.localStorage.getItem('dark-mode')
+        if(theme){
+            document.body.classList.add('dark');
+            document.body.classList.remove('light');
+        }
+        else {
+            document.body.classList.add('light');
+            document.body.classList.remove('dark');
+        }
+    }
+    setDarkMode();
+    `;
+
     return (
         <Html>
             <Head>
@@ -17,6 +32,7 @@ export default function Document() {
                 />
             </Head>
             <body>
+                <script dangerouslySetInnerHTML={{ __html: setDarkMode }} />
                 <div id="portal" />
                 <Main />
                 <NextScript />
