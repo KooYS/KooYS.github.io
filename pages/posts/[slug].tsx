@@ -23,7 +23,7 @@ import { useMemo } from 'react';
 
 const Container = styled.div`
     max-width: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 `;
 const ContentContainer = styled.div`
     padding-left: calc(min(16px, 8vw));
