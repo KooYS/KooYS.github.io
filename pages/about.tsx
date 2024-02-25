@@ -325,10 +325,22 @@ const About = () => {
                                     Express.js
                                 </li>
                                 <li>
-                                    <span className="badge badge-pill badge-primary">
-                                        3
+                                    <span className="badge badge-pill badge-info">
+                                        2
                                     </span>
-                                    Typeorm
+                                    Typeorm, Prisma
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    GraphQL
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-secondary">
+                                        1
+                                    </span>
+                                    Spring Boot
                                 </li>
                             </ul>
                         </SkillWrap>
@@ -340,14 +352,20 @@ const About = () => {
                                     <span className="badge badge-pill badge-primary">
                                         3
                                     </span>
-                                    AWS - EC2, S3, RDS, CloudFront, Route53,
-                                    CodeBuild, CodePipeline CodeDeploy
+                                    AWS - EC2, S3, RDS, CloudFront,Lambda,
+                                    Route53, CodeBuild, CodePipeline CodeDeploy
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    GCP - CE, Cloud Functions, APP Engine, SQL
                                 </li>
                                 <li>
                                     <span className="badge badge-pill badge-info">
                                         2
                                     </span>
-                                    AWS - ELB, Lambda, Beanstalk, ElastiCache
+                                    AWS - ELB, Beanstalk, ElastiCache, DynamoDB
                                 </li>
                                 <li>
                                     <span className="badge badge-pill badge-info">
@@ -359,7 +377,13 @@ const About = () => {
                                     <span className="badge badge-pill badge-info">
                                         2
                                     </span>
-                                    nginx
+                                    Nginx
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Redis
                                 </li>
                             </ul>
                         </SkillWrap>
@@ -378,6 +402,12 @@ const About = () => {
                                         2
                                     </span>
                                     PostgreSQL
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    MongoDB
                                 </li>
                             </ul>
                         </SkillWrap>
@@ -410,10 +440,16 @@ const About = () => {
                                     Eslint/Husky/Prettier
                                 </li>
                                 <li>
-                                    <span className="badge badge-pill badge-secondary">
-                                        1
+                                    <span className="badge badge-pill badge-info">
+                                        2
                                     </span>
                                     React-query
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    SWR
                                 </li>
                                 <li>
                                     <span className="badge badge-pill badge-info">
@@ -434,6 +470,18 @@ const About = () => {
                                     Emotion.js
                                 </li>
                                 <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Tailwind CSS
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-primary">
+                                        3
+                                    </span>
+                                    MUI
+                                </li>
+                                <li>
                                     <span className="badge badge-pill badge-secondary">
                                         1
                                     </span>
@@ -445,6 +493,12 @@ const About = () => {
                                     </span>
                                     Storybook
                                 </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Cypress
+                                </li>
                             </ul>
                         </SkillWrap>
                         <hr />
@@ -455,7 +509,25 @@ const About = () => {
                                     <span className="badge badge-pill badge-info">
                                         2
                                     </span>
-                                    Docker
+                                    Prompt Engineering
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    Python
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-info">
+                                        2
+                                    </span>
+                                    NX(Monorepos)
+                                </li>
+                                <li>
+                                    <span className="badge badge-pill badge-secondary">
+                                        1
+                                    </span>
+                                    Sentry
                                 </li>
                                 <li>
                                     <span className="badge badge-pill badge-primary">
@@ -597,14 +669,13 @@ const About = () => {
                                             덕질 아이돌 팬 정보 큐레이션 서비스
                                             제작
                                         </li>
+                                        <li>덕질 이커머스 서비스 제작</li>
+                                        <li>덕질 NFT 서비스 제작</li>
                                         <li>
-                                            덕질 이커머스 서비스 제작(고도몰
-                                            기반)
+                                            회사 백오피스 개발 (데이터 대시보드,
+                                            단축 URL, 액자 배치도, 메일 시스템,
+                                            스케쥴러 등)
                                         </li>
-                                        <li>
-                                            덕질 리뉴얼 이커머스 서비스 제작 중
-                                        </li>
-                                        <li>덕질 NFT 서비스 제작 중</li>
                                         <li>
                                             <strong>Skill Keywords</strong>
                                         </li>
@@ -665,7 +736,7 @@ const About = () => {
                                         테마 기반 맛집 큐레이션 서비스
                                     </Title>
                                     <SubTitle>쿠폰빌</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
 
                                     <ul>
                                         <li>
@@ -716,7 +787,7 @@ const About = () => {
                                         Duckzill 아이돌 팬 정보 큐레이션 서비스
                                     </Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
 
                                     <ul>
                                         <li>
@@ -808,13 +879,13 @@ const About = () => {
                                 <Content>
                                     <Title>Duckzill Shop 서비스</Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
 
                                     <ul>
                                         <li>
                                             <strong>
                                                 <a
-                                                    href="https://shop.duckzill.com/"
+                                                    href="https://shop.duckzill.com/main/index.php"
                                                     target="_blank"
                                                     rel="noreferrer">
                                                     https://shop.duckzill.com
@@ -876,7 +947,10 @@ const About = () => {
                                         Duckzill NFT Project - Backend
                                     </Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>
+                                        프로젝트 백엔드 파트 개발 및 프로젝트
+                                        총괄
+                                    </SubTitle>
                                     <ul>
                                         <li>
                                             클레이튼 기반의 NFT 드랍 온,
@@ -938,12 +1012,14 @@ const About = () => {
                             <hr />
                             <ContentWrap>
                                 <Date>
-                                    <h4 className="gray">2020. 12 ~ 현재</h4>
+                                    <h4 className="gray">
+                                        2020. 12 ~ 2023. 11
+                                    </h4>
                                 </Date>
                                 <Content>
                                     <Title>Duckzill Shop 리뉴얼 서비스</Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>프로젝트 개발 및 총괄</SubTitle>
                                     <ul>
                                         <li>
                                             솔루션 의존도를 없애고 확장성을
@@ -1028,7 +1104,9 @@ const About = () => {
                                 <Content>
                                     <Title>NFT AirDrop Event</Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>
+                                        프로젝트 1인 개발 및 LG U+ 협업
+                                    </SubTitle>
                                     <ul>
                                         <li>
                                             Polygon 기반의 NFT Airdrop Event (
@@ -1120,7 +1198,7 @@ const About = () => {
                                         NFT AirDrop Event 확장 홀더 이벤트
                                     </Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
                                     <ul>
                                         <li>
                                             Polygon 기반의 NFT Airdrop Event (
@@ -1197,7 +1275,7 @@ const About = () => {
                                         Festa for Army(부산 이벤트 맵)
                                     </Title>
                                     <SubTitle>AMP</SubTitle>
-                                    <SubTitle>프로젝트 총괄</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
                                     <ul>
                                         <li></li>
                                         <li></li>
@@ -1243,6 +1321,331 @@ const About = () => {
                                             />
                                             <StyledImage
                                                 src="./images/about/map/3.gif"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/map/4.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 11 ~ 2023. 03
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>액자 판매 서비스</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>Next.js</li>
+                                                <li>Typescript</li>
+                                                <li>Emotion</li>
+                                                <li>Mui</li>
+                                                <li>Zustand</li>
+                                                <li>
+                                                    husky, eslint, prettier 적용
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>GCP CE</li>
+                                                <li>Prisma</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, Nginx, Docker
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    AWS Lambda를 이용한
+                                                    워터마크, 번역, 결제 및 주문
+                                                    메일링, 결제 시스템
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/frame_tool/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/frame_tool/2.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/frame_tool/3.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 04 ~ 2023. 06
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>백오피스 - 메일링 서비스</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>Nextjs 14</li>
+                                                <li>Typescript</li>
+                                                <li>Mui</li>
+                                                <li>SWR</li>
+                                                <li>Monorepo</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>Nestjs</li>
+                                                <li>Typeorm</li>
+                                                <li>Redis</li>
+                                                <li>Google API</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, Nginx,
+                                                    Docker, GCP
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    예약작업에 대해 Redis로
+                                                    분산, Google Sheet을
+                                                    이용하여 반복 작업 기능도
+                                                    추가
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/backoffice_mail/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/backoffice_mail/2.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 06 ~ 2023. 06
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>백오피스 - 단축URL 서비스</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>Nextjs 14</li>
+                                                <li>Typescript</li>
+                                                <li>Mui</li>
+                                                <li>SWR</li>
+                                                <li>Monorepo</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>Nestjs</li>
+                                                <li>Typeorm</li>
+                                                <li>Redis</li>
+                                                <li>Google API</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, Nginx,
+                                                    Docker, GCP
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    Monorepo 특성을 이용하여
+                                                    단축 URL 서버는 따로
+                                                    분리하여 서버 이슈에 대응,
+                                                    메타데이터 수집
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/backoffice_url/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/backoffice_url/2.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 07 ~ 2023. 10
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>백오피스 - 액자 배치도</Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>프로젝트 1인 개발</SubTitle>
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li>
+                                            <strong>Frontend</strong>
+                                            <ul>
+                                                <li>Nextjs 14</li>
+                                                <li>Typescript</li>
+                                                <li>Mui</li>
+                                                <li>SWR</li>
+                                                <li>Monorepo</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Backend</strong>
+                                            <ul>
+                                                <li>Nestjs</li>
+                                                <li>Typeorm</li>
+                                                <li>Redis</li>
+                                                <li>Google API</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>CI/CD</strong>
+                                            <ul>
+                                                <li>
+                                                    Github Action, Nginx,
+                                                    Docker, GCP
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    자동정렬, 간격조절, PDF 및
+                                                    이미지 Export, 저장 및 수정
+                                                    기능
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/backoffice_frame_layout/1.png"
+                                                alt="duckzill"
+                                            />
+                                        </li>
+                                    </ul>
+                                </Content>
+                            </ContentWrap>
+                            <hr />
+                            <ContentWrap>
+                                <Date>
+                                    <h4 className="gray">
+                                        2022. 10 ~ 2023. 10
+                                    </h4>
+                                </Date>
+                                <Content>
+                                    <Title>
+                                        백오피스 - 액자 판매 썸네일 만들기
+                                    </Title>
+                                    <SubTitle>AMP</SubTitle>
+                                    <SubTitle>1인 개발</SubTitle>
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li>
+                                            <strong>Frontend & Backend</strong>
+                                            <ul>
+                                                <li>Nextjs 14</li>
+                                                <li>Typescript</li>
+                                                <li>Mui</li>
+                                                <li>Monorepo</li>
+                                                <li>Cloud Function (Python)</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ETC</strong>
+                                            <ul>
+                                                <li>
+                                                    액자 바둑판 이미지 썸네일
+                                                    생성기 (디자이너 리소스
+                                                    절약)
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className="example_img">
+                                            <StyledImage
+                                                src="./images/about/backoffice_frame_checkerboard/1.png"
+                                                alt="duckzill"
+                                            />
+                                            <StyledImage
+                                                src="./images/about/backoffice_frame_checkerboard/2.png"
                                                 alt="duckzill"
                                             />
                                         </li>
