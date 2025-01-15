@@ -1,5 +1,4 @@
-import fs from "fs";
-import path from "path";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -7,12 +6,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getSlugMarkdownFiles() {
-  const files = fs.readdirSync(path.join(process.cwd(), "src/markdown"));
-  const paths = files
-    .filter((file) => file.includes(".mdx"))
-    .map((filename) => ({
-      slug: filename.replace(".mdx", ""),
-    }));
-  return paths;
+export function ConsoleLog(...data: any[]) {
+  return process.env.NODE_ENV === "development"
+    ? console.log(...data)
+    : () => {};
 }

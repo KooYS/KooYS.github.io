@@ -1,13 +1,14 @@
 import React from "react";
-import { getSlugMarkdownFiles } from "@/lib/utils";
 import Link from "next/link";
+import { getMarkdownFiles } from "@/lib/server/utils";
 
 const Page = () => {
   return (
     <div className="space-y-10">
-      {getSlugMarkdownFiles().map(({ slug }) => {
+      {getMarkdownFiles().map(({ metadata, slug }) => {
         return (
           <div key={slug}>
+            <img src={metadata.coverImage} alt={metadata.title} />
             <Link href={`/blog/${slug}`}>{slug}</Link>
           </div>
         );

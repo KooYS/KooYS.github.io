@@ -1,3 +1,4 @@
+import { ConsoleLog } from "@/lib/utils";
 import * as cheerio from "cheerio";
 
 interface Data {
@@ -37,7 +38,7 @@ const parse = ({ originUrl, html }: { originUrl: string; html: string }) => {
       default:
         if (p === "image") {
           content = $(`meta[property="og:${p}"]`).attr("content");
-          console.log($(`meta[property="og:${p}"]`).attr("content"));
+          ConsoleLog($(`meta[property="og:${p}"]`).attr("content"));
           if (content?.startsWith("/")) {
             content =
               originUrl.split("/").slice(0, 3).join("/") + "/" + content;
@@ -60,7 +61,7 @@ const getMetaTags = async (link: string): Promise<Data> => {
     const meta = await parse(data);
     return meta;
   } catch (error) {
-    console.log(error);
+    ConsoleLog(error);
     return {
       title: "",
       description: "",
@@ -71,7 +72,7 @@ const getMetaTags = async (link: string): Promise<Data> => {
 
 export async function GET(req: Request) {
   const { pathname } = new URL(req.url);
-  console.log(req.url);
+  ConsoleLog(req.url);
   const href = `https://${pathname.split("/link/")[1]}`;
   const meta = await getMetaTags(href);
   return Response.json(meta);

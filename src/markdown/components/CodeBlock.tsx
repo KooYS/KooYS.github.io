@@ -21,7 +21,7 @@ const Pre: React.FC<Props> = ({ children }) => {
 
   React.useEffect(() => {
     if (textInput.current) {
-      hljs.highlightBlock(textInput.current);
+      hljs.highlightElement(textInput.current);
     }
   }, [children]);
 

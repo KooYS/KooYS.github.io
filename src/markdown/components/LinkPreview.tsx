@@ -1,4 +1,5 @@
 "use client";
+import { ConsoleLog } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
@@ -30,7 +31,7 @@ const LinkPreview: React.FC<Props> = ({ href }) => {
       const data = await fetchMeatData(link);
       setMetaData(data);
     } catch (e) {
-      console.log(e);
+      ConsoleLog(e);
     }
   };
 
@@ -39,7 +40,7 @@ const LinkPreview: React.FC<Props> = ({ href }) => {
       getMetaTags(href);
       isFetch.current = true;
     } else {
-      console.log(metaData);
+      ConsoleLog(metaData);
     }
   }, [metaData]);
   return (

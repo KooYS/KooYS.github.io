@@ -168,7 +168,7 @@ async function getData() {
         cache: 'force-cache',
     });
     const data: Data = await res.json();
-    console.log(data, headers(), cookies());
+    ConsoleLog(data, headers(), cookies());
     return data;
 }
 const Page = () => {
