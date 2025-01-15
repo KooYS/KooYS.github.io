@@ -1,10 +1,9 @@
 ---
-title: '[AWS] Elastic Beanstalk + ECR + Git Action 으로 Nest.js 무중단 배포하기'
-excerpt: '회사에서 EB와 ECR을 통해 Nest.js를 배포하기로 정하여 몇번의 수고 끝에 해당 스택으로 진행 해보고자 한다. 개인적으로 스타트업에는 잘 맞는 플랫폼이라고 생각하며 빠르고 간편하게 인프라를 구성할 수 있고 신경써서 한번만 구성하게 된다면 오토스케일링, 로드밸런싱, 모니터링, 용량 등등 신경 써야할 부분이 많이 줄어들기 때문에 시도했다.'
-coverImage: '/images/post/common/aws.png'
-date: '2022-03-26T16:19:00'
+title: "[AWS] Elastic Beanstalk + ECR + Git Action 으로 Nest.js 무중단 배포하기"
+excerpt: "회사에서 EB와 ECR을 통해 Nest.js를 배포하기로 정하여 몇번의 수고 끝에 해당 스택으로 진행 해보고자 한다. 개인적으로 스타트업에는 잘 맞는 플랫폼이라고 생각하며 빠르고 간편하게 인프라를 구성할 수 있고 신경써서 한번만 구성하게 된다면 오토스케일링, 로드밸런싱, 모니터링, 용량 등등 신경 써야할 부분이 많이 줄어들기 때문에 시도했다."
+coverImage: "/images/post/elasticbeanstalk-ecr-gitaction-nestjscommon/aws.png"
+date: "2022-03-26T16:19:00"
 ---
-
 
 회사에서 EB와 ECR을 통해 Nest.js를 배포하기로 정하여 몇번의 수고 끝에 해당 스택으로 진행 해보고자 한다.
 
@@ -16,19 +15,20 @@ ECR을 사용한 이유는 확장되면서 도커를 사용할 일이 많아 미
 
 기본적으로 Nest.js 프로젝트, AWS 계정, Docker가 준비되면 될 것 같다.
 
-
 ## 1. Dockerfile 만들기
 
-프로젝트에 먼저 Dockerfile을 만들고 해당 파일을 로컬 Docker에서 테스트를 한다. 
+프로젝트에 먼저 Dockerfile을 만들고 해당 파일을 로컬 Docker에서 테스트를 한다.
 
 먼저 잘 동작하는 Dockerfile이 있어야 후에 덜 수고스러운 것 같아서 먼저 만들어보길..
 
 Root에 docker라는 folder를 만들고 dev, prod으로 나누며 본 글에서는 dev를 서버에 올리는 작업으로 예시를 만들 예정이다.
 
-<Img size={80} src="1.png" caption="파일 트리" />
+<Img
+  size={80}
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/1.png"
+  caption="파일 트리"
+/>
 
-
- 
 ### .dockerignore
 
 ```
@@ -37,7 +37,9 @@ dist
 ```
 
 ### Dockerfile
+
 해당 Dockerfile은 퍼블릭한 코드를 많이 가져왔는데 추가한 것은 .env 파일이다. 해당 부분이 빠지면 실행을 할때 적절한 환경변수를 찾지 못해 실행이 되지 않거나 문제가 생기기 때문에 추가함.
+
 ```
 FROM node:14.17.6-alpine as builder
 
@@ -70,7 +72,10 @@ CMD ["npm", "run", "start:dev"]
 docker build -f docker/dev/Dockerfile -t { docker image name } .
 ```
 
-<Img src="2.png" caption="빌드 중" />
+<Img
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/2.png"
+  caption="빌드 중"
+/>
 
 빌드가 완료되면 빌드 때 정한 **`{ docker image name }`** 으로 컨테이너를 띄워 본다.
 
@@ -78,7 +83,10 @@ docker build -f docker/dev/Dockerfile -t { docker image name } .
 docker run -p 3001:3001 { docker image name }
 ```
 
-<Img src="3.png" caption="실행 중" />
+<Img
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/3.png"
+  caption="실행 중"
+/>
 
 이제 기본적인 Dockfile은 준비가 끝. 이제 Github action을 구성한다.
 
@@ -89,27 +97,15 @@ docker run -p 3001:3001 { docker image name }
 \* 그대로 복사해서 사용하면 안되고 한 번씩 흐름을 따라가면서 수정할 부분에서 수정해야함.
 
 ```html
-1. 해당 flow가 발생할 브랜치명
-
-2. AWS_ACCESS_KEY_ID
-
-3. AWS_SECRET_ACCESS_KEY
-
-4. env
-
-5. ECR 레포지토리 이름
-
-6. Beanstalk 어플리케이션 이름
-
-7. Beanstalk 환경 이름
+1. 해당 flow가 발생할 브랜치명 2. AWS_ACCESS_KEY_ID 3. AWS_SECRET_ACCESS_KEY 4.
+env 5. ECR 레포지토리 이름 6. Beanstalk 어플리케이션 이름 7. Beanstalk 환경 이름
 ```
-
 
 이렇게만 추가하시면 끝! 굉장히 간단하다.
 
 2-4의 경우는 github의 secrets를 이용하면 좋다. 직접 입력해도 상관없지만 보안의 문제로 secrets을 사용하면 좋은데 아래의 링크에서 추가하는 방법을 확인할 수 있다.
 
-<LinkPreview href="https://docs.github.com/en/actions/security-guides/encrypted-secrets"/>
+<LinkPreview href="https://docs.github.com/en/actions/security-guides/encrypted-secrets" />
 
 ```
 name: Deploy to ECR
@@ -122,11 +118,11 @@ jobs:
   build:
     name: Build Image
     runs-on: ubuntu-latest
-   
+
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-    
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -189,22 +185,20 @@ jobs:
 
 aws console에서 Elastic Container Registry를 검색!
 
-<Img src="4.png"/>
-<Img src="5.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/4.png" />
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/5.png" />
 
 Github action에서 사용할 ECR 레포지토리 이름을 입력한 뒤 다른 건 건드리지말고 생성
 
-<Img src="6.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/6.png" />
 
-
-ECR도 준비 끝. 
+ECR도 준비 끝.
 
 이미지 태그는 lastest으로 고정했기 때문에 필요하다면 이를 github workflow에 수정할 태그를 준비해서 넣어도 좋다.
 
 그렇게 되면 ECR에서 태그를 관리할 수 있다. 아래에서 보이는 스크린샷은 태그가 lastest라 과거 이미지는 전부 untagged가 되어있다.
 
-<Img size={40} src="7.png"/>
-
+<Img size={40} src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/7.png" />
 
 ## 4. Elastic Beanstalk 만들기
 
@@ -214,54 +208,54 @@ aws console에서 마찬가지로 `Elastic Beanstalk`를 검색!
 
 Github action에서 사용할 BeanStalk `어플리케이션 이름`을 입력하고 다른 건 건드리지말고 생성을 해줍니다.
 
-<Img src="8.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/8.png" />
 
 방금 만든 어플리케이션을 클릭하여 `새 환경 생성` -> `웹 서버 환경` 순서로 차례차례 클릭.
 
 Github action에서 사용할 BeanStalk 환경 이름을 입력하고 도메인도 본인이 사용하고자하는 도메인을 입력하고 가용성 확인을 클릭
 
-<Img src="9.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/9.png" />
 
 플랫폼은 다양하게 있지만 ECR을 사용하고자 Docker로 선택.
 
-<Img src="10.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/10.png" />
 
 `추가 옵션 구성`을 눌러서 이제 디테일한 설정을 해준다. 여기서는 사실 정답이 없기 때문에 배포하고자 하는 환경과 회사의 스케일 등을 고려하여 선택.
 
-<Img src="11.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/11.png" />
 
 먼저 사전설정에서 `사용자 지정 구성`을 함.
 
-<Img src="12.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/12.png" />
 
 그 다음 인스턴스에서 편집.
 
 인스턴스 보안 그룹을 사용해야하기 때문에 사용하고자 하는 보안 그룹을 추가. 지금 안하고 구성이 완료되고 추가해도 괜찮으니 나중에 추가하시면 된다.
 
-<Img src="13.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/13.png" />
 
 용량에서 편집.
 
 오토 스케일링을 사용하고자 한다면 로드 밸런싱 수행을 선택하고 아니면 단일 인스턴스를 사용. 본 글에서는 로드 밸런싱 수행을 선택.
 
-<Img src="14.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/14.png" />
 
 이제 원하는 인스턴스 유형을 선택. 이것도 사용 목적에 따라 선택하면 됨
 
-<Img src="15.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/15.png" />
 
 \* 로드 밸런싱을 선택하시면 조정 트리거를 선택할 수 있다.
 
 이것도 자유롭게 설정이 가능하지만 아래 보이는 예제는 CPU 사용률이 70%이상이면 인스턴스가 추가되고 30%로 떨어지면 추가된 인스턴스가 삭제되는 조정 트리거다.
 
-<Img src="16.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/16.png" />
 
 로드 밸런서에서 편집.
 
 Application LB를 사용하고 https를 사용하고자 한다면 리스너에 SSL 인증서를 선택 추가함.
 
-<Img src="17.png"/>
-<Img src="18.png"/>
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/17.png" />
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/18.png" />
 
 롤링 업데이트와 배포에서 편집.
 
@@ -269,7 +263,7 @@ Application LB를 사용하고 https를 사용하고자 한다면 리스너에 S
 
 아래 링크에서 배포 방식에 대해서 설명 되어있으니 참고하시면 될 것 같다.
 
-<LinkPreview href="https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html"/>
+<LinkPreview href="https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html" />
 
 보안에서 편집.
 
@@ -278,18 +272,17 @@ Application LB를 사용하고 https를 사용하고자 한다면 리스너에 S
 기본으로 구성된걸 사용하면 되는데 IAM 인스턴스 프로파일에 정책 하나만 추가해주시면 된다.
 
 아래의 보이는 스크린샷에 빨간 박스의 정책을 추가해준다.
-<Img src="19-1.png"/>
-<Img src="19.png"/>
+
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/19-1.png" />
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/19.png" />
 
 마지막으로 네트워크에서 편집을 눌러 VPC 설정을 해준다.
 
 그렇게....만들고 몇분 지나면 샘플 어플리케이션이 올라간다.
 
-<Img src="20.png"/>
-
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/20.png" />
 
 ## 5. Github action에서 사용할 IAM 만들기
-
 
 aws console에서 IAM에 들어가 사용자 추가.
 
@@ -299,26 +292,37 @@ aws console에서 IAM에 들어가 사용자 추가.
 \- AmazonECS_FullAccess \
 \- AdministratorAccess-AWSElasticBeanstalk
 
-<Img src="21.png"/>
-
+<Img src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/21.png" />
 
 여기에서 `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` 까지 준비 끝.
-
 
 ## 6. 배포
 
 현재 배포가 되어있어서 재배포를 하여 테스트 해본다. 현재 환경에서 제공하는 url을 누르면 data가 test로 나옵니다. 이를 hello로 변경해보도록 한다.
 
-<Img size={80} src="22.png"/>
+<Img
+  size={80}
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/22.png"
+/>
 
 코드를 변경하고 trigger branch에 push.
 
-<Img size={100} src="23.png" caption="github action의 process" />
+<Img
+  size={100}
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/23.png"
+  caption="github action의 process"
+/>
 
-<Img size={100} src="24.png"/>
+<Img
+  size={100}
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/24.png"
+/>
 
 새로고침을 하면서 체크해보면 이전 배포의 `data : test`와 새로운 배포의 `data : Hello`가 번갈아가면서 나오면서 정상적으로 배포가 완료되면서 예전 인스턴스는 종료가 되면서 무중단 배포가 이뤄진다.!!!!
 
-<Img size={100} src="25.png"/>
+<Img
+  size={100}
+  src="/images/post/elasticbeanstalk-ecr-gitaction-nestjs/25.png"
+/>
 
 ### 끝!!

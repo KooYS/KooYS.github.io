@@ -1,21 +1,22 @@
 ---
-title: 'Nextjs 13 + TailwindCss 적용기'
-excerpt: 'Tailwind CSS를 도입한 회사의 기술 블로그를 봤다. 나는 그 동안 Emotion의 간편함과 깔끔함이 좋아 TailwindCSS는 맛보기로 넘어가는 수준이었는데 이 글을 읽고나서 많이 생각하게 되었다. 사실 이름을 짓는 것 이게 가장 짜증나고 걸리적거리는 부분인데 혼자가 아닌 거대한 팀으로 이 문제를 안고간다면 정말 큰 리스크라고 생각이 들었다. 내가 읽은 글에서 문제점이라고 언급하는게 두 가지다.'
-coverImage: '/images/post/next-tailwindcss/og.png'
-date: '2022-10-31T10:37:00'
+title: "Nextjs 13 + TailwindCss 적용기"
+excerpt: "Tailwind CSS를 도입한 회사의 기술 블로그를 봤다. 나는 그 동안 Emotion의 간편함과 깔끔함이 좋아 TailwindCSS는 맛보기로 넘어가는 수준이었는데 이 글을 읽고나서 많이 생각하게 되었다. 사실 이름을 짓는 것 이게 가장 짜증나고 걸리적거리는 부분인데 혼자가 아닌 거대한 팀으로 이 문제를 안고간다면 정말 큰 리스크라고 생각이 들었다. 내가 읽은 글에서 문제점이라고 언급하는게 두 가지다."
+coverImage: "/images/post/next-tailwindcss/og.png"
+date: "2022-10-31T10:37:00"
 ---
 
-Tailwind CSS를 도입한 회사의 기술 블로그를 봤다. 나는 그 동안 Emotion의 간편함과 깔끔함이 좋아 TailwindCSS는 맛보기로 넘어가는 수준이었는데 이 글을 읽고나서 많이 생각하게 되었다. 사실 이름을 짓는 것 이게 가장 짜증나고 걸리적거리는 부분인데 혼자가 아닌 거대한 팀으로 이 문제를 안고간다면 정말 큰 리스크라고 생각이 들었다. 내가 읽은 글에서 문제점이라고 언급하는게 두 가지다. 
+Tailwind CSS를 도입한 회사의 기술 블로그를 봤다. 나는 그 동안 Emotion의 간편함과 깔끔함이 좋아 TailwindCSS는 맛보기로 넘어가는 수준이었는데 이 글을 읽고나서 많이 생각하게 되었다. 사실 이름을 짓는 것 이게 가장 짜증나고 걸리적거리는 부분인데 혼자가 아닌 거대한 팀으로 이 문제를 안고간다면 정말 큰 리스크라고 생각이 들었다. 내가 읽은 글에서 문제점이라고 언급하는게 두 가지다.
 
-첫 번째는 같은 요소가 있더라도 별도의 컴포넌트로 만드는 상황 
+첫 번째는 같은 요소가 있더라도 별도의 컴포넌트로 만드는 상황
 
 두 번째는 컬러나 폰트 등에 네이밍이 없어서 Font 사이즈에 대해 변경 요청이 있을 때 직접 다 찾아서 수정해야하는 문제
 
 추가로 Emotion에 대한 문제점이라고 언급된 것은 네이밍을 붙이는 작업에 있어서 과한 설정 예를 들어 컴포넌트 정의라던지 혹은 ThemeProvider 라던지 또 사용하기 위해서 useTheme 훅을 사용하는 번거로움
 
-이를 해결하기 위해 TailwindCSS을 도입했다고 한다.  글에서 제안하는 Tailwind CSS를 프로젝트에 구성해보고자 한다. 
+이를 해결하기 위해 TailwindCSS을 도입했다고 한다. 글에서 제안하는 Tailwind CSS를 프로젝트에 구성해보고자 한다.
 
 ## Next13 프로젝트 세팅하기
+
 나는 next 13 버전이 익숙해지기 위해서 베타버전의 app 디렉토리를 사용할 생각이다. 물론 여러 가지가 업데이트 되겠지만 많이 써보자!!
 
 ```
@@ -27,6 +28,7 @@ yarn create next-app --typescript .
 프로젝트가 만들어지고 간단한 prettier와 app 디렉토리 설정만 했다.
 
 ## TailwindCSS 설정
+
 아래의 링크에서 설치 순서를 따라가면 된다.
 [Install Tailwind CSS with Next.js - Tailwind CSS](https://tailwindcss.com/docs/guides/nextjs)
 
@@ -35,9 +37,10 @@ yarn add -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-**tailwind.config.js** 파일과 **postcss.config.js** 파일이 생성된다. 
+**tailwind.config.js** 파일과 **postcss.config.js** 파일이 생성된다.
 
-여기에서 tailwind.config.js 파일에 아래의 코드로 변경해준다. 
+여기에서 tailwind.config.js 파일에 아래의 코드로 변경해준다.
+
 ```
 // tailwind.config.js
 
@@ -60,6 +63,7 @@ module.exports = {
 ```
 
 그리고 **styles/globals.css** 파일에 아래의 코드를 추가하면 세팅은 끝난다.
+
 ```
 @tailwind base;
 @tailwind components;
@@ -67,7 +71,9 @@ module.exports = {
 ```
 
 ## 1차 테스트
+
 루트 레이아웃에 **styles/globals.css**을 import 한다.
+
 ```
 import { ReactNode } from 'react';
 import 'styles/globals.css';
@@ -90,7 +96,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 }
 ```
 
-루트 page에 실제로 적용을 해본다. 
+루트 page에 실제로 적용을 해본다.
+
 ```
 // app/page.tsx
 
@@ -126,17 +133,20 @@ export default Text;
 ```
 
 실행해보면 app 디렉토리와 src/component 모두 tailwindCSS가 야무지게 반영된 것을 확인 할 수 있다.
-<Img src="1.png"/>
 
+<Img src="/images/post/next-tailwindcss/1.png" />
 
 ## twin.macro 셋업하기
-twin.macro은 tailwind의 유연함을 제공하는 라이브러리다. tailwind만 사용하게 되면 직접 인라인에 명시를 해야하기 때문에 이를 twin.macro가 도와 줄 수 있다.  twin.macro를 통해 Tailwind CSS와 emotion을 통합하여 사용할 수 있다.
+
+twin.macro은 tailwind의 유연함을 제공하는 라이브러리다. tailwind만 사용하게 되면 직접 인라인에 명시를 해야하기 때문에 이를 twin.macro가 도와 줄 수 있다. twin.macro를 통해 Tailwind CSS와 emotion을 통합하여 사용할 수 있다.
+
 ```
 yarn add @emotion/react @emotion/styled @emotion/css @emotion/server
 yarn add -D twin.macro @emotion/babel-plugin babel-plugin-macros @emotion/babel-preset-css-prop
 ```
 
 **.babelrc** 을 만들어서 아래의 코드를 넣는다. (우선은 SWC 포기…)
+
 ```
 // .babelrc
 
@@ -147,8 +157,9 @@ yarn add -D twin.macro @emotion/babel-plugin babel-plugin-macros @emotion/babel-
 
 ```
 
-twin.d.ts도 만들어준다.  만들어 주는 이유는 인라인에 css에 넣게 되었을 때 타입에 대한 오류가 나온다.
+twin.d.ts도 만들어준다. 만들어 주는 이유는 인라인에 css에 넣게 되었을 때 타입에 대한 오류가 나온다.
 **tsconfig.json** 의 include 영역에 추가해줘야한다. **./src/@types** 을 추가해줘야한다.
+
 ```
 // src/@types/twin.d.ts
 
@@ -214,11 +225,12 @@ const Text = () => {
 export default Text;
 ```
 
-수정한 코드로 재 시작을 하면  twin.macro가 잘 적용 되었음이 확인된다.
-<Img src="2.png"/>
+수정한 코드로 재 시작을 하면 twin.macro가 잘 적용 되었음이 확인된다.
 
+<Img src="/images/post/next-tailwindcss/2.png" />
 
 ## 커스텀 플러그인 추가해보기
+
 이 내용은 기술 블로그에서 본 걸 유용해 보여서 따라해봤다. 같은 패턴을 이런식으로 구성하여 쓴다면 효율이 좋아질 것 같다. 예시는 스크롤바를 숨기는 유틸리티이다.
 
 ```
@@ -255,6 +267,7 @@ plugins: [
 ```
 
 아래의 코드로 실행한다.
+
 ```
 // src/components/Text.tsx
 
@@ -284,15 +297,16 @@ export default Text;
 ```
 
 현재 코드에서 JSX Pragma 을 추가 해주었다. app 디렉토리의 서버와 클라이언트의 분리 때문에 기존의 해결 방법을 적용하면 에러가 생긴다. 그래서 우선은 JSX Pragma을 설정해줬다.
+
 ```
 /** @jsxImportSource @emotion/react */
 ```
 
 사실 css props을 사용할 필요없다면 해당 JSX Pragma도 쓰지않아도 된다.
 
-아무튼 아래는 실행 결과이다. 
-<Img src="3.png"/>
+아무튼 아래는 실행 결과이다.
 
+<Img src="/images/post/next-tailwindcss/3.png" />
 
 ## 반응형 처리
 
@@ -317,10 +331,12 @@ module.exports = {
 };
 ```
 
-<Img src="4.png"/>
+<Img src="/images/post/next-tailwindcss/4.png" />
 
 ## 커스텀 단위 설정
+
 사실 디자이너와 소통작업을 할때는 대부분 px로 얘기를 한다. 다만 개발할때는 rem 단위가 적용되어야한다고 생각한다. 역시나 해당 글에서도 같은 이슈에 대해서 언급되어있었다. 나는 여기에서 TailwindCss가 매력적이라고 더 느껴진 것 같았다.
+
 ```
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
@@ -384,8 +400,8 @@ export default Text;
 
 1pxr 라는 단위는 1/16rem이라는 값으로 맵핑되며, 16pxr은 1rem이라는 값으로 맵핑된다. 즉, 구성은 rem으로 되지만 서로 오고가는 이미지 혹은 스타일링에 대해서는 px 값으로 넣어줘도 된다. 단위를 pxr로 한다면 말이다. 너무 유용해보였다.
 
-<Img src="5.png"/>
+<Img src="/images/post/next-tailwindcss/5.png" />
 
-너무 유익한 내용이었다. 다만 바벨 플러그인이 SWC 컴파일러와 호환되지 않아서 아쉬운 부분들이 있었고 간단한 프로젝트에서 사용하기에는 부담이 되는 부분도 있었다. 물론 이를 보일러플레이트 구성을 해놓는다면 유용할 것 같았다.  이 중에서도 커스텀 플러그인과 단위는 쓸모가 많을 것으로 보인다. 
+너무 유익한 내용이었다. 다만 바벨 플러그인이 SWC 컴파일러와 호환되지 않아서 아쉬운 부분들이 있었고 간단한 프로젝트에서 사용하기에는 부담이 되는 부분도 있었다. 물론 이를 보일러플레이트 구성을 해놓는다면 유용할 것 같았다. 이 중에서도 커스텀 플러그인과 단위는 쓸모가 많을 것으로 보인다.
 
 ### 끝

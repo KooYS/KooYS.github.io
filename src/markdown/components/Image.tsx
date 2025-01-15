@@ -14,7 +14,7 @@ const Image: React.FC<Props> = ({ path, src, alt, caption }) => {
         src={path && !src.startsWith(".") ? `${path}${src}` : src}
         alt={alt}
       />
-      {caption && <caption>{caption}</caption>}
+      {caption && <span>{caption}</span>}
     </div>
   );
 };

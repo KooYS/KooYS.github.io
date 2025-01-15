@@ -1,10 +1,17 @@
 import React from "react";
-import ReactPost from "@/markdown/react.mdx";
+import { getSlugMarkdownFiles } from "@/lib/utils";
+import Link from "next/link";
 
 const Page = () => {
   return (
-    <div>
-      <ReactPost />
+    <div className="space-y-10">
+      {getSlugMarkdownFiles().map(({ slug }) => {
+        return (
+          <div key={slug}>
+            <Link href={`/blog/${slug}`}>{slug}</Link>
+          </div>
+        );
+      })}
     </div>
   );
 };

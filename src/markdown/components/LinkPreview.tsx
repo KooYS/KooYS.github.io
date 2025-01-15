@@ -27,7 +27,7 @@ const LinkPreview: React.FC<Props> = ({ href }) => {
 
   const getMetaTags = async (link: string) => {
     try {
-      const { data } = await fetchMeatData(link);
+      const data = await fetchMeatData(link);
       setMetaData(data);
     } catch (e) {
       console.log(e);
