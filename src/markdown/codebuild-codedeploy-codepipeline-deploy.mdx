@@ -1,0 +1,247 @@
+---
+title: '[AWS] CodeBuild, CodeDeploy, CodePipeline으로 node 배포하기'
+excerpt: '요즘 자주 CI/CD의 작업을 하게 되는 것 같다. 나중에 같은 스펙으로 CI/CD를 만들 수 있기 때문에 지금 다시 정리를 해보려고 한다. 순서대로 따라하면 배포가 자동으로 되도록 정리를 하고자 한다. 어렴풋 기억나는 상태에서 읽으면 금방 따라할 수 있는 글이다.'
+coverImage: '/images/post/common/aws.png'
+date: '2022-03-21T21:23:00'
+---
+
+## 1. 기본 EC2 세팅
+
+기본적으로 node 환경과 git을 세팅 (node version은 16.x)
+
+```
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install build-essential
+sudo apt-get update
+sudo apt-get install git
+```
+
+## 2. EC2 IAM 만들기
+
+IAM -> 역할 -> 새로운 IAM 을 만들어서 아래의 스크린샷의 권한을 부여
+
+\- AWSCodeDeployFullAccess \
+\- AWSCodeDeployRole \
+\- CloudWatchLogsFullAccess \
+\- AmazonS3FullAccess
+
+<Img size={80} src="1.png" caption="4개의 권한" />
+
+이제 이 IAM 역할을 EC2에 부여. 역할 수정을 눌러 새로 만든 역할을 부여하면 된다.
+
+<Img size={80} src="2.png" caption="역할 수정" />
+
+
+
+## 3. CodeDeploy IAM 만들기
+
+IAM -> 역할로 들어가서 아래의 권한으로 역할을 만든다.
+
+\- AWSCodeDeployRole
+
+<Img size={80} src="3.png" caption="AWSCodeDeployRole 역할" />
+
+
+## 4. CodeDeploy 사용자 추가
+
+
+CodeDeploy와 EC2 연동을 위하여 CodeDeploy Agent를 설치하고 해당 CodeDeploy를 사용할 group을 만든다.
+
+먼저 IAM -> 사용자그룹에 들어간다.
+
+그룹생성을 누르고 그룹명을 적고 정책 생성을 클릭
+
+<Img src="4.png" />
+
+정책에 대해서 좀 보안적인 부분도 신경써야하지만 우선 아래의 JSON 데이터를 붙여 넣어 생성
+
+
+<Img src="5.png" />
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:*",
+                "codedeploy:*",
+                "ec2:*",
+                "lambda:*",
+                "ecs:*",
+                "elasticloadbalancing:*",
+                "iam:AddRoleToInstanceProfile",
+                "iam:CreateInstanceProfile",
+                "iam:CreateRole",
+                "iam:DeleteInstanceProfile",
+                "iam:DeleteRole",
+                "iam:DeleteRolePolicy",
+                "iam:GetInstanceProfile",
+                "iam:GetRole",
+                "iam:GetRolePolicy",
+                "iam:ListInstanceProfilesForRole",
+                "iam:ListRolePolicies",
+                "iam:ListRoles",
+                "iam:PassRole",
+                "iam:PutRolePolicy",
+                "iam:RemoveRoleFromInstanceProfile",
+                "cloudwatch:*",
+                "logs:*",
+                "sns:*",
+                "s3:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+```
+
+해당 정책이 연결된 group을 만들었으니 이제 이 그룹에 포함될 사용자 만들 차례
+
+IAM -> 사용자를 클릭
+
+<Img size={80} src="6.png" />
+<Img size={80} src="7.png" />
+<Img size={80} src="8.png" />
+
+
+## 5. CodeDeploy Agent 설치
+
+먼저 사용자 추가를 위해 EC2에 접속하여 awscli 설치
+
+
+
+```
+sudo apt install awscli
+sudo aws configure
+
+순서대로 위에서 만든 csv를 보며 입력합니다.
+AWS Access Key ID : -----
+AWS Secret Access KEy : -----
+Default region name : ap-northeast-2
+Default output format : json
+
+```
+
+이제 agent 설치!
+
+```
+cd /home/ubuntu/
+wget https://aws-codedeploy-ap-northeast-2.s3.amazonaws.com/latest/install
+chmod +x ./install
+sudo apt-get install ruby
+sudo ./install auto
+
+```
+
+상태를 확인!
+
+```
+sudo service codedeploy-agent status
+```
+
+<Img size={100} src="9.png"  caption="active (running) 이렇게 보인다면 성공!"/>
+
+인스턴스가 부팅할때 자동으로 실행하도록 스크립트를 추가
+
+```
+sudo vim /etc/init.d/codedeploy-startup.sh
+
+i 누르고 아래 복사하여 붙여넣기
+
+#!/bin
+sudo service codedeploy-agent restart
+
+esc 누르고 :wq
+```
+
+마지막으로 실행권한 부여
+
+```
+sudo chmod +x /etc/init.d/codedeploy-startup.sh
+```
+
+
+## 6. CodeBuild 추가
+
+CodeBuild는 간단!
+
+
+<Img size={100} src="10.png" />
+<Img size={100} src="11.png" />
+<Img size={100} src="12.png" />
+
+
+### buildspec.yml 작성 !!
+
+<Img size={100} src="13.png" />
+
+사실 루트에 buildspec.yml을 추가해도 좋지만 이번 케이스는 빌드명령을 삽입해서 사용
+
+다양한 응용도 가능하다. build 전 env 파일을 만들어서 build를 할 수도 있고 빌드가 완료된 dist 폴더만 codedeploy로 넘겨줄 수도 있다.
+
+<Img size={100} src="14.png" />
+
+간단하게 buildspec을 작성을 함.
+```
+version: 0.2
+ 
+phases:
+  install:
+    commands:
+      - npm install
+  pre_build:
+    commands:
+      - npm run lint
+artifacts:
+  files:
+    - '**/*'
+```
+
+
+
+## 7. appspec.yml 추가
+
+appspec.yml을 배포할 프로젝트의 루트에 추가한다.
+
+```
+version: 0.0
+os: linux
+files:
+  - source:  /
+    destination: 소스가 추가될 경로
+    overwrite: true
+file_exists_behavior: OVERWRITE # 기존에 파일이 있으면 에러가 나서 추가.
+
+```
+
+
+appspec.yml을 추가한 프로젝트를 clone
+
+```
+git config --global credential.helper store 
+# clone하고 해당 폴더로 들어가서 위 명령어를 작성하면 이제 pull 받을때 계정정보를 묻지 않는다.
+```
+
+이제 CodeDeploy 배포를 생성!
+
+<Img size={100} src="15.png" />
+
+
+## 8. CodePipeline 추가
+
+배포 자동화를 위한 CodePipeline을 추가.
+
+파이프라인 생성 -> 새 서비스 역할 -> 소스공급자는 Github(Version 2) -> 빌드공급자(Codebuild) -> 배포공급자(CodeDeploy)
+
+지금까지 만든걸 순서대로 잘 입력하면 배포가 성공하게 된다.
+
+<Img size={100} src="16.png" />
+
+
+
+### 끝!!

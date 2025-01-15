@@ -1,0 +1,230 @@
+---
+title: 'Storybook을 적용해보기'
+excerpt: '현재 이 블로그는 nextjs 기반으로 제작되어있으며 vercel을 통해서 배포되었다. 앞으로 블로그를 만들어나가면서 많은 컴포넌트 제작이 필요할 것으로 보이며 다른 서비스 개발에도 필요한 컴포넌트들이 분명 있을 것 같아서 이번 기회에 storybook 환경을 구성해서 만들어보고자 한다.'
+coverImage: '/images/post/storybook-1/cover.png'
+date: '2022-09-13T22:55:00'
+# status: pending
+---
+
+# Storybook을 적용해보기
+현재 이 블로그는 nextjs 기반으로 제작되어있으며 vercel을 통해서 배포되었다. 앞으로 블로그를 만들어나가면서 많은 컴포넌트 제작이 필요할 것으로 보이며 다른 서비스 개발에도 필요한 컴포넌트들이 분명 있을 것 같아서 이번 기회에 storybook 환경을 구성해서 만들어보고자 한다.
+
+## 시작하기
+```
+npx sb init --builder webpack5
+```
+
+위 명령어를 실행하고 묻는 대답에 따라 설치를 한다.  끝나갈 무렵에 아래의 이미지 처럼
+`eslint-plugin`을 설치하라고 권유한다.  이때도 `y` 눌러서 설치를 진행한다.
+
+<Img size={100} src="1.png" caption="eslint-plugin" />
+
+실행을 해본다!
+
+```
+ yarn storybook 
+```
+
+잘 실행된다 :)
+
+<Img size={80} src="2.png" caption="1st-success" />
+
+## 간단하게 만들어보기
+블로그 메인의 Posts를 보면  아래의 이미지처럼 PostCard 컴포넌트가 있다. 이를 스토리로 만들어보려고 한다.
+
+<Img size={80} src="3.png" caption="postcard" />
+
+컴포넌트 폴더에 `PostCard.stories.tsx`를 만든다.
+
+src/components/Post/PostCard.stories.tsx
+```
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import _PostCard from './PostCard';
+
+export default {
+    title: 'Components/Post/PostCard',
+    component: _PostCard,
+} as ComponentMeta<typeof _PostCard>;
+
+const PostCardTemplate: ComponentStory<typeof _PostCard> = (args) => {
+    return <_PostCard {...args} />;
+};
+
+export const PostCard = PostCardTemplate.bind({});
+PostCard.args = {
+    item: {
+        title: '[AWS] CodeBuild, CodeDeploy, CodePipeline으로 node 배포하기',
+        date: '2022-03-21T21:23:00',
+        slug: 'slug',
+        coverImage: '/images/post/common/aws.png',
+        excerpt:
+            '요즘 자주 CI/CD의 작업을 하게 되는 것 같다. 나중에 같은 스펙으로 CI/CD를 만들 수 있기 때문에 지금 다시 정리를 해보려고 한다. 순서대로 따라하면 배포가 자동으로 되도록 정리를 하고자 한다. 어렴풋 기억나는 상태에서 읽으면 금방 따라할 수 있는 글이다.',
+    },
+};
+
+```
+
+예상했던 그림이 아니였다. 문제를 해결해보자.
+
+<Img size={80} src="4.png" caption="problem" />
+
+## 버그
+### 이미지 not found
+해당 coverImage 상대 경로는 nextjs에서는 잘 찾지만 storybook은 이를 찾지 못한다. 
+
+`package.json`에서 기존에서 변경 후로 바꿔서 재실행하면 이미지가 정상적으로 보인다.
+```
+# 기존
+"storybook": "start-storybook -p 6006",
+
+# 변경 후
+"storybook": "start-storybook -p 6006 -s ./public",
+```
+
+<Img size={80} src="5.png" caption="problem-clear" />
+
+### CSS 문제
+
+블로그에서 사용하고있는 GlobalStyles가 적용되어있지 않고 emotion 세팅도 아직 되어있지 않기 때문에 문제가 발생했다.
+
+emotion 사용을 위해 main.js를 아래와 같이 추가해준다.
+
+.storybook/main.js
+```
+const path = require('path');
+const toPath = (_path) => path.join(process.cwd(), _path);
+
+module.exports = {
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    "@storybook/addon-links", "@storybook/addon-essentials"
+  ],
+  webpackFinal: async config => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        '@emotion/core': toPath('node_modules/@emotion/react'),
+        '@emotion/styled': toPath('node_modules/@emotion/styled'),
+      },
+    },
+  }),
+};
+
+
+```
+
+다음으로 GlobalStyles 적용을 위해서 preview.js을 아래의 코드로 수정한다.
+`CssBaseLine`가 GlobalStyles으로 생각하면 된다.
+
+.storybook/preview.js
+```
+import { ThemeProvider } from '@emotion/react'
+import { addDecorator } from '@storybook/react';
+import theme from '../styles/theme'
+import CssBaseLine from '../src/components/CssBaseLine'
+
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+};
+
+addDecorator(story => <ThemeProvider theme={theme}><CssBaseLine/>{story()}</ThemeProvider>);
+```
+
+이제 다시 시작을 해보기 전에! 깜빡하고 PostCard의 부모격인 styled component를 빼먹어서 이 또한 추가하고자 한다.
+
+src/components/Post/PostCard.stories.tsx
+```
+...
+
+const BlogListWrap = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    ${(props) => props.theme.mq.mobile} {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    row-gap: 50px;
+    column-gap: 20px;
+    width: 100%;
+`;
+
+export default {
+    title: 'Components/Post/PostCard',
+    component: _PostCard,
+} as ComponentMeta<typeof _PostCard>;
+
+const PostCardTemplate: ComponentStory<typeof _PostCard> = (args) => {
+    return (
+        <BlogListWrap>
+            <_PostCard {...args} />
+        </BlogListWrap>
+    );
+};
+...
+```
+
+이제 아래와 같이 정상적으로 나오게 된다. 일단 정상적으로 나오는건 맞지만 허접하다. 이래서 Storybook을 추가하려고 했다…. 몰랐던 부분들이 마구 발견될 것 같은 느낌이다.
+
+<Img size={80} src="6.png" caption="clear" />
+
+## 배포하기
+배포를 과연 어떤식으로 하는게 좋을까? 
+
+스토리북 홈페이지에 들어가보자. 배포하기 탭에 홈페이지가 있다. 
+
+<LinkPreview href="https://www.chromatic.com/"/>
+
+**무료**다.
+
+<Img size={80} src="7.png" caption="chromatic price" />
+
+그러면 나는 바로 **크로마틱**(Chromatic)을 선택하여 배포해보겠다.
+
+로그인을 하고 새로운 프로젝트를 만들면  아래의 이미지 처럼 60초안으로 셋업을 도와준다. 
+
+<Img size={80} src="8.png" caption="60초 셋업" />
+
+순서대로 코드를 실행하면…. 아래의 작업들이 순서대로 진행된 후
+
+<Img size={80} src="9.png" caption="진행 화면" />
+
+아주 나이스하게 배포가 되었다.
+<Img size={80} src="10.png" caption="배포 완료" />
+
+Catch a UI cahgne를 눌러본 뒤 다시 코드를 실행! 코드 실행 전에 무언가를 바꿔줘야한다!! 
+
+<Img size={80} src="11.png"/>
+
+그러면 아래처럼 1개의 컴포넌트가 변경되었다고 보여진다. 
+<Img size={80} src="12.png"/>
+
+<Img size={80} src="13.png"/>
+
+<Img size={80} src="14.png"/>
+
+<Img size={80} src="15.png"/>
+
+
+
+이제 나의 스토리북은 배포가 되었다. 간단하게 [확인](https://63500d10ec053b27077b41e2-xvrsnoegiq.chromatic.com/) 해볼 수 있다.
+
+마지막으로 번거롭게 매번 명령어로 배포하기 귀찮기 때문에 github action을 사용하고자 한다.
+
+아래의 링크에서 전반적인 flow를 볼 수 있다.
+<LinkPreview href="https://storybook.js.org/tutorials/intro-to-storybook/react/ko/deploy/"/>
+
+간단하다 chromatic.yml을 만들고 위 링크에서 복붙을 한 뒤 GitHub secrets에 
+
+CHROMATIC_PROJECT_TOKEN 를 입력해주면 된다.
+
+CHROMATIC_PROJECT_TOKEN의 값은 Manage -> configure 에서 확인 할 수 있다.
+
+
+### 끝!

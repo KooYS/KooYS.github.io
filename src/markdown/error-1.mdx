@@ -1,0 +1,44 @@
+import Img from "./components/Image";
+
+title: "ESlint와 VS Code 충돌 버그 (1)"
+excerpt: "여러개의 Nextjs 폴더를 하나의 폴더에 넣었다. 모노레포처럼 하나의 레포에 여러개의 프로젝트가 들어간 폴더 구조다. 근데 문제는 ESlint가 자꾸 충돌이 나는 이슈이다. 자꾸 아래와 같은 이슈가 생겨서 검색을 해보니 `.babelrc` 에 `next/babel` 추가하고 `.eslintrc`에 `next/babel`를 추가해라 등 다양한 글들이 있었다."
+coverImage: "/images/post/error-1/cover.png"
+date: "2022-09-13T12:19:00"
+
+---
+
+# ESlint와 VS Code 충돌 버그
+
+## 원인
+
+여러개의 Nextjs 폴더를 하나의 폴더에 넣었다. 모노레포처럼 하나의 레포에 여러개의 프로젝트가 들어간 폴더 구조다.
+
+근데 문제는 ESlint가 자꾸 충돌이 나는 이슈이다.
+
+자꾸 아래와 같은 이슈가 생겨서 검색을 해보니 `.babelrc` 에 `next/babel` 추가하고 `.eslintrc`에 `next/babel`를 추가해라 등 다양한 글들이 있었다.
+
+<Img src="/images/post/error-1/1.png" />
+
+하지만 전부 되지않았고 그러는 와중에 여러개 중 하나의 프로젝트만 따로 열어보면 버그가 없었다. 👊👊
+
+이 때 아!! 이건 VS Code와 ESlint의 각자의 텃세라는 생각으로 해결방법을 찾아냈다.
+
+### 해결
+
+가장 Root 폴더에 지금 당장 `.vscode` 폴더를 만든다.
+
+그리고 그 폴더안에 `settings.json`을 만들고 아래와 같이 eslint.workingDirectories를 설정해준다.
+
+```jsx
+{
+    "eslint.workingDirectories": [
+        "./프로젝트1",
+        "./프로젝트2",
+			...
+    ]
+}
+```
+
+이러니 깔끔하게 문제 해결이 되었다.
+
+### 끝!
