@@ -1,6 +1,10 @@
 const SiteDocs = [
   {
-    title: "Me",
+    title: "Blog",
+    href: "/",
+  },
+  {
+    title: "About me",
     href: "/about",
   },
 ];

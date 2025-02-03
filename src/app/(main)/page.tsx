@@ -11,12 +11,12 @@ const CoverImage = ({ src, alt }: { src: string; alt: string }) => {
     />
   );
 };
-const Item = ({ metadata, slug }: { metadata: Metadata; slug: string }) => {
+const Item = ({ metadata }: { metadata: Metadata; slug: string }) => {
   return (
     <div className="border rounded-md col-span-1 h-full">
       <CoverImage src={metadata.coverImage} alt={metadata.title} />
       <div className="px-4 py-4 space-y-1">
-        <p className="font-semibold text-lg">{slug}</p>
+        <p className="font-semibold text-lg">{metadata.title}</p>
         <p className="line-clamp-2 text-gray-400 text-sm">
           {metadata.excerpt ? metadata.excerpt : "..."}
         </p>

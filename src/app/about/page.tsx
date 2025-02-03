@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import { Mail, Phone } from "lucide-react";
 import ImagePopup from "@/app/about/ImagePopup";
 import React from "react";
+import Image from "next/image";
+import "./about.css";
 
 const SectionTitle = "text-2xl font-bold mb-4 underline-offset-4 underline";
 const Skill = () => {
@@ -15,165 +17,113 @@ const Skill = () => {
     <div>
       <h2 className={SectionTitle}>Skills</h2>
       <div className="space-y-10">
+        {/* Backend */}
         <div>
-          <div className={className.sub_title}>Back-end</div>
+          <div className={className.sub_title}>Backend</div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className={className.bg}>
-              <div className="text-sm font-semibold">Node</div>
+              <div className="text-sm font-semibold">Node.js</div>
+              <div className="text-xs text-gray-500">Runtime</div>
             </div>
             <div className={className.bg}>
               <div className="text-sm font-semibold">Nest.js</div>
+              <div className="text-xs text-gray-500">Enterprise</div>
             </div>
             <div className={className.bg}>
               <div className="text-sm font-semibold">Express.js</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">TypeORM</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Prisma</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">GraphQL</div>
+              <div className="text-xs text-gray-500">REST API</div>
             </div>
             <div className={className.bg}>
               <div className="text-sm font-semibold">Spring Boot</div>
+              <div className="text-xs text-gray-500">Java</div>
+            </div>
+            <div className={className.bg}>
+              <div className="text-sm font-semibold">GraphQL</div>
+              <div className="text-xs text-gray-500">API Query</div>
             </div>
           </div>
         </div>
 
+        {/* DevOps */}
         <div>
           <div className={className.sub_title}>DevOps</div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className={className.bg}>
-              <div className="text-sm font-semibold">
-                AWS (EC2, S3, RDS, CloudFront, Lambda, Route53, CodeBuild,
-                CodePipeline, CodeDeploy)
-              </div>
+              <div className="text-sm font-semibold">AWS</div>
+              <div className="text-xs text-gray-500">EC2, Lambda, RDS</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">
-                GCP (Compute Engine, Cloud Functions, App Engine, Cloud SQL)
-              </div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">
-                AWS (ELB, Beanstalk, ElastiCache, DynamoDB)
-              </div>
+              <div className="text-sm font-semibold">GCP</div>
+              <div className="text-xs text-gray-500">Compute, Cloud SQL</div>
             </div>
             <div className={className.bg}>
               <div className="text-sm font-semibold">Docker</div>
+              <div className="text-xs text-gray-500">Containerization</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">Nginx</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Redis</div>
+              <div className="text-sm font-semibold">CI/CD</div>
+              <div className="text-xs text-gray-500">GitHub Actions</div>
             </div>
           </div>
         </div>
 
+        {/* Database */}
         <div>
           <div className={className.sub_title}>Database</div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {/* Database */}
             <div className={className.bg}>
-              <div className="text-sm font-semibold">MySQL</div>
+              <div className="text-sm font-semibold">RDBMS</div>
+              <div className="text-xs text-gray-500">MySQL, PostgreSQL</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">PostgreSQL</div>
+              <div className="text-sm font-semibold">NoSQL</div>
+              <div className="text-xs text-gray-500">MongoDB</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">MongoDB</div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div className={className.sub_title}>Front-end</div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">HTML/CSS/JS</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">React.js</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Next.js</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">ESLint/Husky/Prettier</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">React Query</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">SWR</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Recoil</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">TypeScript</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Emotion.js</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Tailwind CSS</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">MUI</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">MobX</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Storybook</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Cypress</div>
+              <div className="text-sm font-semibold">ORM</div>
+              <div className="text-xs text-gray-500">TypeORM, Prisma</div>
             </div>
           </div>
         </div>
 
+        {/* Frontend */}
         <div>
-          <div className={className.sub_title}>ETC</div>
+          <div className={className.sub_title}>Frontend</div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className={className.bg}>
-              <div className="text-sm font-semibold">Prompt Engineering</div>
+              <div className="text-sm font-semibold">React</div>
+              <div className="text-xs text-gray-500">Next.js, Recoil</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">Python</div>
+              <div className="text-sm font-semibold">State</div>
+              <div className="text-xs text-gray-500">MobX, SWR</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">NX (Monorepos)</div>
+              <div className="text-sm font-semibold">Styling</div>
+              <div className="text-xs text-gray-500">Tailwind, MUI</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">Sentry</div>
+              <div className="text-sm font-semibold">Testing</div>
+              <div className="text-xs text-gray-500">Cypress, Storybook</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tools */}
+        <div>
+          <div className={className.sub_title}>Tools</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className={className.bg}>
+              <div className="text-sm font-semibold">Version</div>
+              <div className="text-xs text-gray-500">Git, GitHub</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">
-                Git / GitHub / Git Actions
-              </div>
+              <div className="text-sm font-semibold">Design</div>
+              <div className="text-xs text-gray-500">Figma, Zeplin</div>
             </div>
             <div className={className.bg}>
-              <div className="text-sm font-semibold">Slack</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Figma</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Linear</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Zeplin</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Swagger</div>
-            </div>
-            <div className={className.bg}>
-              <div className="text-sm font-semibold">Postman</div>
+              <div className="text-sm font-semibold">API</div>
+              <div className="text-xs text-gray-500">Postman, Swagger</div>
             </div>
           </div>
         </div>
@@ -790,13 +740,12 @@ export default function Page() {
       <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8 md:gap-12">
         <div className="flex flex-col items-center md:items-start space-y-4">
           <div className="rounded-full w-32 h-32 overflow-hidden border">
-            <img
+            <Image
               src="https://avatars.githubusercontent.com/u/17160263"
               width={128}
               height={128}
               alt="KooYS Profile"
-              className="w-full h-full object-cover"
-              style={{ aspectRatio: "128/128", objectFit: "cover" }}
+              className="w-full h-full object-cover "
             />
           </div>
           <div className="space-y-2 text-center md:text-left">
@@ -825,30 +774,30 @@ export default function Page() {
             <h2 className={cn(SectionTitle, "text-3xl")}>About Me</h2>
             <div className="text-muted-foreground space-y-2">
               <p>
-                안녕하세요, 저는 웹 기반 풀스택 개발자입니다. 서비스를 설계하고
-                개발하며, 하나의 아이디어가 기능으로 구현되는 과정에서 재미와
-                보람을 느낍니다.
+                안녕하세요! <code>웹 기반 풀스택 개발자 구영서</code>
+                입니다. 서비스를 설계하고 개발하며, 하나의 아이디어가 기능으로
+                구현되는 과정에서 재미와 보람을 느낍니다.
               </p>
               <p>
-                개발 과정에서 잘 풀리지 않는 문제가 생기면 여러 번 시도하며 해결
-                방법을 찾는 데 깊이 몰입하곤 합니다. 때로는 시간이 어떻게
-                흘러가는지도 모를 정도로 집중하기도 하지만, 혼자만의 시야에
-                갇히지 않으려 주변의 피드백과 조언을 소중히 여기며 성장하려고
-                노력합니다.
+                트렌드를 따라가기 위해 <b>꾸준</b>하게 공부하고 문제 해결
+                과정에서 잘 풀리지 않는 문제가 생기면 해결을 위해
+                <b> 집중과 노력</b>을 합니다. 때로는 시간이 어떻게 흘러가는지도
+                모를 정도로 집중하기도 하지만, 혼자만의 시야에 갇히지 않으려
+                <b> 공유</b>를 통해 주변의 피드백과 조언을 소중히 여기며
+                성장하고 있습니다.
               </p>
               <p>
-                작은 디테일도 놓치지 않으면서 사용자에게 필요한 가치를
-                고민합니다. 그 결과물이 누군가의 일상에 조금이나마 도움이 될 수
-                있다면, 그것만으로도 개발자로서 큰 의미를 느낍니다. 앞으로도
-                끊임없이 배우고 고민하며 노력하겠습니다.
+                <b>좋은 코드</b>를 위해 고민하고 작은 디테일도 놓치지 않으면서
+                사용자에게 필요한 가치를 찾습니다. 결과물이 누군가에게
+                조금이나마 도움이 될 수 있다면, 그것만으로도 개발자로서 큰
+                의미를 느낍니다. 앞으로도 <b>끊임없이</b> 배우고 노력하겠습니다.
               </p>
             </div>
           </div>
-
           <Skill />
-          <Education />
-          <Experience />
           <Projects />
+          <Experience />
+          <Education />
         </div>
       </div>
     </div>

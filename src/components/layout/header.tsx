@@ -9,7 +9,7 @@ export function Header() {
         <div className="container flex h-14 items-center">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-4 flex items-center gap-2 lg:mr-6" href="/">
-              <span className="hidden font-bold lg:inline-block">Blog</span>
+              <span className="hidden font-bold lg:inline-block">KooYS</span>
             </Link>
             <nav className="flex items-center gap-4 text-sm xl:gap-6">
               {SiteDocs.map((doc) => (
