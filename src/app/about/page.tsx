@@ -17,7 +17,6 @@ const DownloadPdfButton = () => {
   const handleDownload = () => {
     const currentUrl = window.location.href;
     const apiUrl = `/api/pdf?url=${encodeURIComponent(currentUrl)}`;
-
     // 새 탭에서 PDF 다운로드 트리거
     window.open(apiUrl, "_blank");
   };
