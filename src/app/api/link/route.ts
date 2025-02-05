@@ -1,5 +1,6 @@
 import { ConsoleLog } from "@/lib/utils";
 import * as cheerio from "cheerio";
+import { NextResponse } from "next/server";
 
 interface Data {
   title: string;
@@ -75,5 +76,5 @@ export async function GET(req: Request) {
   ConsoleLog(req.url);
   const href = `https://${pathname.split("/link/")[1]}`;
   const meta = await getMetaTags(href);
-  return Response.json(meta);
+  return NextResponse.json(meta);
 }

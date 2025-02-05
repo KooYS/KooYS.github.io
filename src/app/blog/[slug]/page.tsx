@@ -2,7 +2,7 @@ import Img from "@/markdown/components/Image";
 import LinkPreview from "@/markdown/components/LinkPreview";
 import { getMarkdownFile, getMarkdownFiles } from "@/lib/server/utils";
 import { format } from "date-fns";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { MDXContent } from "@/mdx-components";
 
 export default async function Page({
   params,
@@ -21,17 +21,17 @@ export default async function Page({
         <div className="text-sm text-gray-500">
           {metadata.date ? format(metadata.date, "yyyy-MM-dd HH:mm") : "-"}
         </div>
-        <MDXRemote
-          source={content}
-          components={{
+        {MDXContent({
+          content,
+          components: {
             Img: (props: React.ComponentProps<typeof Img>) => (
               <Img {...props} />
             ),
             LinkPreview: (props: React.ComponentProps<typeof LinkPreview>) => (
               <LinkPreview {...props} />
             ),
-          }}
-        />
+          },
+        })}
       </main>
     </div>
   );
