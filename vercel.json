@@ -1,7 +1,6 @@
 {
   "functions": {
-    "app/api/pdf/route.js": {
-      "memory": 1024,
+    "api/**/*": {
       "maxDuration": 60
     }
   }
