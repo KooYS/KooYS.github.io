@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <link rel="apple-touch-icon" href="favicon.ico"></link>
       <link rel="icon" href="/favicon.ico"></link>
-      <meta name="theme-color" content="#8b5abb" />
+      <meta name="theme-color" content="#ffffff" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-touch-fullscreen" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
