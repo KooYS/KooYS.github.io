@@ -3,7 +3,10 @@ import createMDX from "@next/mdx";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ["@sparticuz/chrome-aws-lambda"],
+    serverComponentsExternalPackages: [
+      "@sparticuz/chrome-aws-lambda",
+      "puppeteer-core",
+    ],
   },
   images: { domains: ["avatars.githubusercontent.com"] },
   // Configure `pageExtensions` to include markdown and MDX files

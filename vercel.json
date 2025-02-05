@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/**/*": {
+    "app/api/pdf/route.js": {
       "maxDuration": 60
     }
   }

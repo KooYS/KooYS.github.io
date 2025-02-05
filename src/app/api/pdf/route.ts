@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import chrome from "@sparticuz/chrome-aws-lambda";
-
+export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const targetUrl = searchParams.get("url");
