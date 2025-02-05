@@ -67,7 +67,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("PDF 생성 실패:", error);
     return NextResponse.json(
-      { error: "PDF 생성에 실패했습니다." },
+      { error: { message: "PDF 생성에 실패했습니다.", detail: error } },
       { status: 500 }
     );
   }
